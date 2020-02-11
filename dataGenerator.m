@@ -26,3 +26,5 @@ plot(x, lLimit); hold on;
 plot(x, limMean); hold on;
 plot(x, y, '.');
 
+save('data', 'x', 'y');
+
