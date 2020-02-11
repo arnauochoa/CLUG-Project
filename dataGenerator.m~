@@ -1,0 +1,26 @@
+clear; close all; clc;
+%% RANDOM DATA GENERATOR
+
+x           =   0:0.1:60;       % X Axis
+nSamples    =   round(0.9*length(x));
+xSamples    =   datasample(x, nSamples, 'Replace', true);
+
+% Upper limit
+uk          =   0.08;
+ub          =   0.8;
+uLimit      =   ub*exp(-uk*x);
+
+% Lower limit
+lk          =   0.08;
+lb          =   -0.6;
+lLimit      =   lb*exp(-lk*x);
+
+limMean     =   (uLimit+lLimit)/2;
+
+figure;
+plot(x, uLimit); hold on;
+plot(x, lLimit); hold on;
+plot(x, limMean);
+
+y           =   normrnd(limMean, 
+
