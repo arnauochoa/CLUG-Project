@@ -2,7 +2,7 @@ clear; close all; clc;
 %% RANDOM DATA GENERATOR
 step        =   0.1;
 x           =   0:step:60;       % X Axis
-incThres    =   52;
+incThres    =   55;
 nSamples    =   round(0.9*length(x));
 xSamples    =   datasample(x, nSamples, 'Replace', true);
 indInc      =   find(x==incThres);
@@ -12,7 +12,7 @@ xInc        =   0:step:x(end)-incThres;
 uk          =   0.07;
 ub          =   1;
 uLimit      =   ub*exp(-uk*x)+0.08;  % 2-sigma
-ruLimit     =   exp(1*(xInc+x(indInc)-60));   % Increase at end
+ruLimit     =   exp(1*(xInc+x(indInc)-50));   % Increase at end
 ruLimit     =   ruLimit - ruLimit(1) + uLimit(indInc);
 uLimit(indInc:end)      =   ruLimit;
 
@@ -20,7 +20,7 @@ uLimit(indInc:end)      =   ruLimit;
 lk          =   0.07;
 lb          =   -0.8;
 lLimit      =   lb*exp(-lk*x)-0.08;  % 2-sigma
-rlLimit     =   -exp(1*(xInc+x(indInc)-60)); % Increase at end
+rlLimit     =   -exp(1*(xInc+x(indInc)-80)); % Increase at end
 rlLimit     =   rlLimit - rlLimit(1) + lLimit(indInc);
 lLimit(indInc:end)      =   rlLimit;
 
