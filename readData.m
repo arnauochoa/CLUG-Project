@@ -12,7 +12,7 @@ function [DATA] = readData(filename)
     load(filename);
     
     if ~(exist('x','var') && exist('y','var'))
-        error("Variables x and/or y do not exist");
+        error('Variables x and/or y do not exist');
     end
     DATA.X = x;
     DATA.Y = y;
