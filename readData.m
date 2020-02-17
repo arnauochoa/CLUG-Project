@@ -11,9 +11,10 @@ function [DATA] = readData(filename)
 % ----------------------------------------------------------------------------------------
     load(filename);
     
-    if ~(exist('x','var') && exist('y','var'))
-        error('Variables x and/or y do not exist');
+    if ~(exist('x','var') && exist('y','var') && exist('y2','var'))
+        error('Variables x, y and/or y2 do not exist');
     end
     DATA.X = x;
     DATA.Y = y;
+    DATA.Y2 = y2; %Variance of y
 end

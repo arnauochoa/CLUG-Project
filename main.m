@@ -11,9 +11,9 @@ function main()
     CONFIG      =   getConfig();
     
     %% OBTAINIG REGRESSION
-    [result, coeff]     =   regression(DATA, CONFIG);
+    [result, coeff, coeffVar, coeffVar2]     =   regression(DATA, CONFIG);
     
     %% GETTING OUTPUT AND PLOTS
-    getOutput(DATA, CONFIG, result, coeff);
+    getOutput(DATA, CONFIG, result, coeff, coeffVar, coeffVar2);
 
 end

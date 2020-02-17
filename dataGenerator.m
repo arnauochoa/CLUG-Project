@@ -28,12 +28,16 @@ limMean     =   (uLimit+lLimit)/2;
 
 sigma       =   (uLimit-limMean)./2;
 y           =   normrnd(limMean, sigma);
+y2          =   (y - limMean).^2;
 
 figure;
 plot(x, uLimit); hold on;
 plot(x, lLimit); hold on;
 plot(x, limMean); hold on;
-plot(x, y, '.');
+plot(x, y, 'k.','MarkerSize',7);
+%plot(x, y2, 'r*','MarkerSize',3);
+plot(x, y2, 'r-');
+legend('\mu + 2\sigma', '\mu - 2\sigma', '\mu', 'Random noise', '\sigma^2'); 
 
-save('data', 'x', 'y');
+save('data', 'x', 'y', 'y2');
 
