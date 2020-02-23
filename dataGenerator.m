@@ -24,20 +24,22 @@ rlLimit     =   -exp(1*(xInc+x(indInc)-60)); % Increase at end
 rlLimit     =   rlLimit - rlLimit(1) + lLimit(indInc);
 lLimit(indInc:end)      =   rlLimit;
 
-limMean     =   (uLimit+lLimit)/2;
+trueMean     =   (uLimit+lLimit)/2;
 
-sigma       =   (uLimit-limMean)./2;
-y           =   normrnd(limMean, sigma);
-y2          =   (y - limMean).^2;
+sigma       =   (uLimit-trueMean)./2;
+trueVar     =   sigma.^2;
+y           =   normrnd(trueMean, sigma);
+y2          =   (y - trueMean).^2;
 
 figure;
 plot(x, uLimit); hold on;
 plot(x, lLimit); hold on;
-plot(x, limMean); hold on;
+plot(x, trueMean); hold on;
 plot(x, y, 'k.','MarkerSize',7);
 %plot(x, y2, 'r*','MarkerSize',3);
-plot(x, y2, 'r-');
+% plot(x, y2, 'r-');
+plot(x, trueVar, 'r-');
 legend('\mu + 2\sigma', '\mu - 2\sigma', '\mu', 'Random noise', '\sigma^2'); 
 
-save('data', 'x', 'y', 'y2');
+save('data', 'x', 'y', 'y2', 'trueMean', 'trueVar');
 

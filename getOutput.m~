@@ -12,7 +12,7 @@ function getOutput(DATA, CONFIG, result, coeff, coeffVar, coeffVar2, sqrtErr, co
         plot(DATA.X, DATA.Y, '.'); hold on;
         plot(DATA.X, f1); hold on;
         plot(DATA.X, DATA.MEAN)
-        legend('Random noise', 'Mean estimation', 'True mean');
+        legend('Random noise', 'Fitting Curve', 'True mean');
         
         figure;
         f2 = polyval(coeffVar, DATA.X);
@@ -24,9 +24,8 @@ function getOutput(DATA, CONFIG, result, coeff, coeffVar, coeffVar2, sqrtErr, co
         figure;
         f3 = polyval(coeffVar3, DATA.X);
         plot(DATA.X, sqrtErr, '.'); hold on;     
-        plot(DATA.X, f3); hold on;
-        plot(DATA.X, DATA.VAR)
-        legend('Squared error', 'Variance estimation', 'True variance')
+        plot(DATA.X, f3)
+        legend('(x-\mu_x)^2', 'Fitting Curve')
         
         % TODO
 
