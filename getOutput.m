@@ -1,4 +1,4 @@
-function getOutput(DATA, CONFIG, result, coeff, coeffVar, coeffVar2, sqrtErr, coeffVar3)
+function getOutput(DATA, CONFIG, result, coeffMean, coeffVar, sqrdErr, coeffMean2, coeffVar2)
 % This function applies the regression technique selected in configuration
 %
 % INPUT
@@ -7,27 +7,21 @@ function getOutput(DATA, CONFIG, result, coeff, coeffVar, coeffVar2, sqrtErr, co
 %           result:     ....   
 %           
 % ----------------------------------------------------------------------------------------
+        set(0, 'DefaultLineLineWidth', 1.2);
         
-        f1 = polyval(coeff, DATA.X);
+        f1     =   coeffMean(DATA.X);
         plot(DATA.X, DATA.Y, '.'); hold on;
-        plot(DATA.X, f1); hold on;
-        plot(DATA.X, DATA.MEAN)
-        legend('Random noise', 'Mean estimation', 'True mean');
+        plot(DATA.X, f1, 'r'); hold on;
+        plot(DATA.X, coeffMean2(DATA.X), 'm');hold on;
+        plot(DATA.X, DATA.MEAN, 'g');
+        legend('Random noise', 'Mean estimation', 'Weighted Mean Estimation', 'True mean');
         
         figure;
-        f2 = polyval(coeffVar, DATA.X);
-        plot(DATA.X, DATA.Y2, '.'); hold on;
-        plot(DATA.X, f2);       
-        plot(coeffVar2,'g-')
-        legend('\sigma^2', 'Fitting Curve poly','Fitting Curve exp')
+        plot(coeffVar, DATA.X, sqrdErr); hold on;
+        plot(DATA.X, coeffVar2(DATA.X), 'm');hold on;
+        plot(DATA.X, DATA.VAR, 'g')
+        legend('Squared error', 'Variance estimation', 'Weighted Variance Estimation', 'True variance')
         
-        figure;
-        f3 = polyval(coeffVar3, DATA.X);
-        plot(DATA.X, sqrtErr, '.'); hold on;     
-        plot(DATA.X, f3); hold on;
-        plot(DATA.X, DATA.VAR)
-        legend('Squared error', 'Variance estimation', 'True variance')
         
-        % TODO
 
 end

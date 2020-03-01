@@ -1,4 +1,4 @@
-function [result, coeff, coeffVar, coeffVar2, sqrtErr, coeffVar3] = regression(DATA, CONFIG)
+function [result, coeffMean, coeffVar, sqrdErr, coeffMean2, coeffVar2] = regression(DATA, CONFIG)
 % ----------------------------------------------------------------------------------------
 % This function applies the regression technique selected in configuration
 %
@@ -15,14 +15,23 @@ function [result, coeff, coeffVar, coeffVar2, sqrtErr, coeffVar3] = regression(D
 
     switch CONFIG.REGRESSION_METHOD
         case 1 % MATLAB curve fitting function
-            coeff       = polyfit(DATA.X, DATA.Y, 2);
-            % Curve fitting for the variance of the random noise
-            coeffVar    = polyfit(DATA.X, DATA.Y2, 2);
-            coeffVar2   = fit(DATA.X', DATA.Y2','exp1');
+            % Curve fitting for the mean of the random noise
+%             coeffMean   =   polyfit(DATA.X, DATA.Y, 2);
+            coeffMean    =   fit(DATA.X', DATA.Y','exp1');
             
-            meanReg     =   polyval(coeff, DATA.X);
-            sqrtErr     =   (DATA.Y - meanReg).^2;
-            coeffVar3   =   polyfit(DATA.X, sqrtErr, 2);
+            % Curve fitting for the variance of the random noise
+%             meanReg     =   polyval(coeffMean, DATA.X);
+            meanReg     =   coeffMean(DATA.X)';
+            sqrdErr     =   (DATA.Y - meanReg).^2;
+            coeffVar    =   fit(DATA.X', sqrdErr','exp1');  % 	Y = a*exp(b*x)
+            
+            % Obtain weights
+            weigths     =   1./sqrt(coeffVar(DATA.X));
+            
+            % Recompute regression for mean and variance
+            coeffMean2  =   fit(DATA.X', DATA.Y', 'exp1', 'Weights', weigths);
+            coeffVar2   =   fit(DATA.X', sqrdErr', 'exp1', 'Weights', weigths);
+            
         case 2 % Custom classical regression model
             % TODO
             
