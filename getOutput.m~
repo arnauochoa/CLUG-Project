@@ -1,0 +1,27 @@
+function getOutput(DATA, CONFIG, result, coeffMean, coeffVar, sqrtErr)
+% This function applies the regression technique selected in configuration
+%
+% INPUT
+%           DATA:       Struct. Input data
+%           CONFIG:     Struct. Configuration parameters
+%           result:     ....   
+%           
+% ----------------------------------------------------------------------------------------
+        
+        f1 = polyval(coeffMean, DATA.X);
+        plot(DATA.X, DATA.Y, '.'); hold on;
+        plot(DATA.X, f1); hold on;
+        plot(DATA.X, DATA.MEAN)
+        legend('Random noise', 'Mean estimation', 'True mean');
+      
+        
+        figure;
+        f3 = polyval(coeffVar, DATA.X);
+        plot(DATA.X, sqrtErr, '.'); hold on;     
+        plot(DATA.X, f3); hold on;
+        plot(DATA.X, DATA.VAR)
+        legend('Squared error', 'Variance estimation', 'True variance')
+        
+        % TODO
+
+end
