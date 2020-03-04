@@ -10,6 +10,7 @@ function getOutput(DATA, CONFIG, result, coeffMean, coeffVar, sqrdErr, coeffMean
         set(0, 'DefaultLineLineWidth', 1.2);
         
         f1     =   coeffMean(DATA.X);
+        figure;
         plot(DATA.X, DATA.Y, '.'); hold on;
         plot(DATA.X, f1, 'r'); hold on;
         plot(DATA.X, coeffMean2(DATA.X), 'm');hold on;

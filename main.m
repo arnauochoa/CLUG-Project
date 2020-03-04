@@ -1,7 +1,7 @@
 % ----------------------------------------------------------------------------------------
 % Main script that reads data, sets parameters and computes regression
 % ----------------------------------------------------------------------------------------
-close all;
+% close all;
 
 %% GETTING DATA
 filename    =   'data.mat';

@@ -13,16 +13,14 @@ function [DATA] = readData(filename)
     
     if ~(   exist('x','var')         &&     ...
             exist('y','var')         &&     ...
-            exist('y2','var')        &&     ...
             exist('trueMean', 'var') &&     ...
             exist('trueVar', 'var')         ...
         )
         
-        error('Variables x, y and/or y2 do not exist');
+        error('Variables x, y do not exist');
     end
     DATA.X      =   x;
     DATA.Y      =   y;
-    DATA.Y2     =   y2; %Variance of y
     DATA.MEAN   =   trueMean;
     DATA.VAR    =   trueVar;
 end
