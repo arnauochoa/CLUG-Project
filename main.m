@@ -1,14 +1,13 @@
 % ----------------------------------------------------------------------------------------
 % Main script that reads data, sets parameters and computes regression
 % ----------------------------------------------------------------------------------------
-% close all;
-
-%% GETTING DATA
-filename    =   'data.mat';
-DATA        =   readData(filename);
+close all; clear; clc;
 
 %% GETTING CONFIG
 CONFIG      =   getConfig();
+
+%% GETTING DATA
+DATA        =   readData(CONFIG);
 
 %% OBTAINIG REGRESSION
 [result, coeffMean, coeffVar, sqrdErr, coeffMean2, coeffVar2]     =   regression(DATA, CONFIG);

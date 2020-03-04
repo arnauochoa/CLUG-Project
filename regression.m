@@ -17,6 +17,7 @@ function [result, coeffMean, coeffVar, sqrdErr, coeffMean2, coeffVar2] = regress
         case 1 % MATLAB curve fitting function
             % Curve fitting for the mean of the random noise
 %             coeffMean   =   polyfit(DATA.X, DATA.Y, 2);
+
             coeffMean    =   fit(DATA.X', DATA.Y','exp1');
             
             % Curve fitting for the variance of the random noise
