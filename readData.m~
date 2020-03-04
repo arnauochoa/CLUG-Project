@@ -13,15 +13,13 @@ function [DATA] = readData(CONFIG)
         case 1
             load('data.mat');
 
-            DATA.X      =   x';
-            DATA.Y      =   y';
-            DATA.MEAN   =   trueMean';
-            DATA.VAR    =   trueVar';
+            DATA.X      =   x;
+            DATA.Y      =   y;
+            DATA.MEAN   =   trueMean;
+            DATA.VAR    =   trueVar;
         case 2
-            directory = '../PR_data/';
-            AllFiles = dir([directory '*.mat']);
-            for f = 1:length(AllFiles)
-                load([directory AllFiles(f).name]);
+            for f = filenames
+                load(cell2mat(f));
             end
 
             if ~(   exist('CN0_joint','var')       &&     ...
@@ -49,12 +47,7 @@ function [DATA] = readData(CONFIG)
             switch CONFIG.DATA.X
                 case 'Elevation',   DATA.X      =   alldata_el_clean;
                 case 'PR error',    DATA.X      =   alldata_pre_clean;
-                case 'CN0',         DATA.X      =   alldata_cn0_clean;
-            end
-            switch CONFIG.DATA.Y
-                case 'Elevation',   DATA.Y      =   alldata_el_clean;
-                case 'PR error',    DATA.Y      =   alldata_pre_clean;
-                case 'CN0',         DATA.Y      =   alldata_cn0_clean;
-            end
+                case 'CN0',         DATA.X      =   alldata_cn0_clean
+            DATA.Y      =   alldata_pre_clean;
     end
 end

@@ -16,18 +16,17 @@ function [CONFIG] = getConfig()
     %   3: Machine learning
     
     %% DATA
-    CONFIG.DATA.TYPE                        =   2;  % 1: generated data
+    CONFIG.DATA.TYPE                        =   1;  % 1: generated data
                                                     % 2: real data
-    % Data options:
-    % Elevation, PR error, CN0
+    
     CONFIG.DATA.X                           =   'Elevation';
     CONFIG.DATA.Y                           =   'PR error';
     
     %% REGRESSION METHOD
-    CONFIG.REGRESSION.METHOD                =   1;  % TODO
+    CONFIG.REGRESSION_METHOD                =   1;  % TODO
     
-    CONFIG.REGRESSION.MATLAB_CF.MEAN_MODEL   =   'poly2';  % poly2, exp1
-    CONFIG.REGRESSION.MATLAB_CF.VAR_MODEL    =   'exp1';   % poly2, exp1
+    CONFIG.METHOD_PARAMS.MATLAB_CF.TYPE     =   'poly2';  % poly2, exp1
+    
     
     
 end

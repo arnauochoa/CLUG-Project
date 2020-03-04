@@ -1,4 +1,4 @@
-function getOutput(DATA, CONFIG, result, coeffMean, coeffVar, sqrtErr)
+function getOutput(DATA, CONFIG, RESULT)
 % This function applies the regression technique selected in configuration
 %
 % INPUT
@@ -7,21 +7,40 @@ function getOutput(DATA, CONFIG, result, coeffMean, coeffVar, sqrtErr)
 %           result:     ....   
 %           
 % ----------------------------------------------------------------------------------------
+        set(0, 'DefaultLineLineWidth', 1.2);
         
-        f1 = polyval(coeffMean, DATA.X);
-        plot(DATA.X, DATA.Y, '.'); hold on;
-        plot(DATA.X, f1); hold on;
-        plot(DATA.X, DATA.MEAN)
-        legend('Random noise', 'Mean estimation', 'True mean');
-      
+        switch CONFIG.DATA.TYPE
+            case 1
+                f1     =   RESULT.coeffMean(DATA.X);
+                figure;
+                plot(DATA.X, DATA.Y, '.'); hold on;
+                plot(DATA.X, f1, 'r'); hold on;
+                plot(DATA.X, RESULT.coeffMeanW(DATA.X), 'm');hold on;
+                plot(DATA.X, DATA.MEAN, 'g');
+                legend('Random noise', 'Mean estimation', 'Weighted Mean Estimation', 'True mean');
+
+                figure;
+                plot(RESULT.coeffVar, DATA.X, RESULT.sqrdErr); hold on;
+                plot(DATA.X, RESULT.coeffVarW(DATA.X), 'm');hold on;
+                plot(DATA.X, DATA.VAR, 'g')
+                legend('Squared error', 'Variance estimation', 'Weighted Variance Estimation', 'True variance')
+            case 2
+                f1     =   RESULT.coeffMean(DATA.X);
+                figure;
+                plot(DATA.X, DATA.Y, '.'); hold on;
+                plot(DATA.X, f1, 'r'); hold on;
+                plot(DATA.X, RESULT.coeffMeanW(DATA.X), 'm');
+                xlabel(CONFIG.DATA.X); ylabel(CONFIG.DATA.Y);
+                legend('Data', 'Mean estimation', 'Weighted Mean Estimation', 'True mean');
+
+                figure;
+                plot(coeffVar, DATA.X, sqrdErr); hold on;
+                plot(DATA.X, coeffVar2(DATA.X), 'm');
+                xlabel(CONFIG.DATA.X); ylabel('Squared error');
+                legend('Squared error', 'Variance estimation', 'Weighted Variance Estimation', 'True variance')
+                
+        end
         
-        figure;
-        f3 = polyval(coeffVar, DATA.X);
-        plot(DATA.X, sqrtErr, '.'); hold on;     
-        plot(DATA.X, f3); hold on;
-        plot(DATA.X, DATA.VAR)
-        legend('Squared error', 'Variance estimation', 'True variance')
         
-        % TODO
 
 end
