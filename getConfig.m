@@ -27,7 +27,7 @@ function [CONFIG] = getConfig()
     CONFIG.REGRESSION.METHOD                =   1;  % TODO
     
     CONFIG.REGRESSION.MATLAB_CF.MEAN_MODEL   =   'poly2';  % poly2, exp1
-    CONFIG.REGRESSION.MATLAB_CF.VAR_MODEL    =   'exp1';  % poly2, exp1
+    CONFIG.REGRESSION.MATLAB_CF.VAR_MODEL    =   'exp1';   % poly2, exp1
     
     
 end

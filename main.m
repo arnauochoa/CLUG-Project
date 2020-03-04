@@ -10,7 +10,7 @@ CONFIG      =   getConfig();
 DATA        =   readData(CONFIG);
 
 %% OBTAINIG REGRESSION
-[result, coeffMean, coeffVar, sqrdErr, coeffMean2, coeffVar2]     =   regression(DATA, CONFIG);
+RESULT     =   regression(DATA, CONFIG);
 
 %% GETTING OUTPUT AND PLOTS
-getOutput(DATA, CONFIG, result, coeffMean, coeffVar, sqrdErr, coeffMean2, coeffVar2);
+getOutput(DATA, CONFIG, RESULT);
