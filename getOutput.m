@@ -11,31 +11,31 @@ function getOutput(DATA, CONFIG, RESULT)
         
         switch CONFIG.DATA.TYPE
             case 1
-                f1     =   RESULT.coeffMean(DATA.X);
                 figure;
-                plot(DATA.X, DATA.Y, '.'); hold on;
-                plot(DATA.X, f1, 'r'); hold on;
-                plot(DATA.X, RESULT.coeffMeanW(DATA.X), 'c');hold on;
+                plot(DATA.X, DATA.Y, '.');          hold on;
+                plot(RESULT.coeffMean, 'r');        hold on;
+                plot(RESULT.coeffMeanW, 'c');       hold on;
                 plot(DATA.X, DATA.MEAN, 'g');
                 legend('Data', 'Mean estimation', 'Weighted Mean Estimation', 'True mean');
 
                 figure;
-                plot(RESULT.coeffVar, DATA.X, RESULT.sqrdErr); hold on;
-                plot(DATA.X, RESULT.coeffVarW(DATA.X), 'c');hold on;
+                plot(DATA.X, RESULT.sqrdErr, '.');  hold on;
+                plot(RESULT.coeffVar, 'r');         hold on;
+                plot(RESULT.coeffVarW, 'c');        hold on;
                 plot(DATA.X, DATA.VAR, 'g')
                 legend('Squared error', 'Variance estimation', 'Weighted Variance Estimation', 'True variance')
             case 2
-                f1     =   RESULT.coeffMean(DATA.X);
                 figure;
-                plot(DATA.X, DATA.Y, '.'); hold on;
-                plot(DATA.X, f1, 'r'); hold on;
-                plot(DATA.X, RESULT.coeffMeanW(DATA.X), 'c');
+                plot(DATA.X, DATA.Y, '.');          hold on;
+                plot(RESULT.coeffMean, 'r');        hold on;
+                plot(RESULT.coeffMeanW, 'c');       hold on;
                 xlabel(CONFIG.DATA.X); ylabel(CONFIG.DATA.Y);
                 legend('Data', 'Mean estimation', 'Weighted Mean Estimation');
 
                 figure;
-                plot(RESULT.coeffVar, DATA.X, RESULT.sqrdErr); hold on;
-                plot(DATA.X, RESULT.coeffVarW(DATA.X), 'c');
+                plot(DATA.X, RESULT.sqrdErr, '.');  hold on;
+                plot(RESULT.coeffVar, 'r');         hold on;
+                plot(RESULT.coeffVarW, 'c');        hold on;
                 xlabel(CONFIG.DATA.X); ylabel('Squared error');
                 legend('Squared error', 'Variance estimation', 'Weighted Variance Estimation')
         end
