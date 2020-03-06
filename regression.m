@@ -15,20 +15,35 @@ function [RESULT] = regression(DATA, CONFIG)
 
     switch CONFIG.REGRESSION.METHOD
         case 1 % MATLAB curve fitting function
+            [MEAN_OPTIONS, VAR_OPTIONS]     =   fgetFitOptions(CONFIG);
+
             % Curve fitting for the mean
-            RESULT.coeffMean    =   fit(DATA.X, DATA.Y, CONFIG.REGRESSION.MATLAB_CF.MEAN_MODEL);
+            RESULT.coeffMean    =   fit(DATA.X, DATA.Y,                             ...
+                                CONFIG.REGRESSION.MATLAB_CF.MEAN.MODEL,             ...
+                                MEAN_OPTIONS);
             
             % Curve fitting for the variance of the random noise
             meanReg             =   RESULT.coeffMean(DATA.X);
             RESULT.sqrdErr      =   (DATA.Y - meanReg).^2;
-            RESULT.coeffVar     =   fit(DATA.X, RESULT.sqrdErr, CONFIG.REGRESSION.MATLAB_CF.VAR_MODEL); 
+            RESULT.coeffVar     =   fit(DATA.X, RESULT.sqrdErr,                     ...
+                                CONFIG.REGRESSION.MATLAB_CF.VAR.MODEL,              ...
+                                VAR_OPTIONS); 
             
             % Obtain weights
-            weigths     =   1./sqrt(RESULT.coeffVar(DATA.X));
+            weights             =   1./sqrt(RESULT.coeffVar(DATA.X));
+            weights(isinf(weights)) = realmax;
             
             % Recompute regression for mean and variance
-            RESULT.coeffMeanW  =   fit(DATA.X, DATA.Y, CONFIG.REGRESSION.MATLAB_CF.MEAN_MODEL, 'Weights', weigths);
-            RESULT.coeffVarW   =   fit(DATA.X, RESULT.sqrdErr, CONFIG.REGRESSION.MATLAB_CF.VAR_MODEL, 'Weights', weigths);
+            MEAN_OPTIONS.Weights = weights;
+            VAR_OPTIONS.Weights = weights;
+            
+            RESULT.coeffMeanW   =   fit(DATA.X, DATA.Y,                             ...
+                                CONFIG.REGRESSION.MATLAB_CF.MEAN.MODEL,             ...
+                                MEAN_OPTIONS);
+                            
+            RESULT.coeffVarW    =   fit(DATA.X, RESULT.sqrdErr,                     ...
+                                CONFIG.REGRESSION.MATLAB_CF.VAR.MODEL,              ...
+                                VAR_OPTIONS);
         case 2 % Custom classical regression model
             % TODO
             
