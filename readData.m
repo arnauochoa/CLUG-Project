@@ -41,10 +41,11 @@ function [DATA] = readData(CONFIG)
             alldata_cn0 = data_temp(:);
 
             cleandata = bitand(alldata_cn0 ~= 0, ~isnan(alldata_pre));
+            cleandata = bitand(cleandata, ~isnan(alldata_cn0));
 
             alldata_cn0_clean = alldata_cn0(cleandata);
             alldata_pre_clean = alldata_pre(cleandata);
-            alldata_el_clean  = alldata_el(cleandata);
+            alldata_el_clean  = rad2deg(alldata_el(cleandata));
             
             switch CONFIG.DATA.X
                 case 'Elevation',   DATA.X      =   alldata_el_clean;

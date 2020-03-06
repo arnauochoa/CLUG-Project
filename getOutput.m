@@ -8,7 +8,7 @@ function getOutput(DATA, CONFIG, RESULT)
 %           
 % ----------------------------------------------------------------------------------------
         set(0, 'DefaultLineLineWidth', 1.5);
-        
+        xVals = min(DATA.X)-100:max(DATA.X)+100;
         switch CONFIG.DATA.TYPE
             case 1
                 figure;
@@ -16,27 +16,33 @@ function getOutput(DATA, CONFIG, RESULT)
                 plot(RESULT.coeffMean, 'r');        hold on;
                 plot(RESULT.coeffMeanW, 'c');       hold on;
                 plot(DATA.X, DATA.MEAN, 'g');
-                legend('Data', 'Mean estimation', 'Weighted Mean Estimation', 'True mean');
+                legend('Data', 'Mean fitting', 'Weighted Mean fitting', 'True mean');
 
                 figure;
-                plot(DATA.X, RESULT.sqrdErr, '.');  hold on;
-                plot(RESULT.coeffVar, 'r');         hold on;
-                plot(RESULT.coeffVarW, 'c');        hold on;
+                plot(DATA.X, sqrt(RESULT.sqrdErr), '.');                hold on;
+                xLimits = get(gca,'XLim');  %# Get the range of the x axis
+                plot(xVals, sqrt(RESULT.coeffVar(xVals)), 'r');         hold on;
+                plot(xVals, sqrt(RESULT.coeffVarW(xVals)), 'c');        hold on;
+                xlim(xLimits);
                 plot(DATA.X, DATA.VAR, 'g')
-                legend('Squared error', 'Variance estimation', 'Weighted Variance Estimation', 'True variance')
+                legend('Squared error', 'Variance fitting', 'Weighted Variance fitting', 'True variance')
             case 2
                 figure;
                 plot(DATA.X, DATA.Y, '.');          hold on;
                 plot(RESULT.coeffMean, 'r');        hold on;
                 plot(RESULT.coeffMeanW, 'c');       hold on;
                 xlabel(CONFIG.DATA.X); ylabel(CONFIG.DATA.Y);
-                legend('Data', 'Mean estimation', 'Weighted Mean Estimation');
-
+                legend('Data', 'Mean fitting', 'Weighted Mean fitting');
+                title(['Fitting of the mean. f(x) = ' formula(RESULT.coeffMean)]);
+                
                 figure;
-                plot(DATA.X, RESULT.sqrdErr, '.');  hold on;
-                plot(RESULT.coeffVar, 'r');         hold on;
-                plot(RESULT.coeffVarW, 'c');        hold on;
-                xlabel(CONFIG.DATA.X); ylabel('Squared error');
-                legend('Squared error', 'Variance estimation', 'Weighted Variance Estimation')
+                plot(DATA.X, sqrt(RESULT.sqrdErr), '.');                hold on;
+                xLimits = get(gca,'XLim');  %# Get the range of the x axis
+                plot(xVals, sqrt(RESULT.coeffVar(xVals)), 'r');         hold on;
+                plot(xVals, sqrt(RESULT.coeffVarW(xVals)), 'c');        hold on;
+                xlim(xLimits);
+                xlabel(CONFIG.DATA.X); ylabel([CONFIG.DATA.Y ' STD']);
+                legend('y - \mu_y', 'STD fitting', 'Weighted STD fitting');
+                title(['Fitting of the standard deviation. f(x) = ' formula(RESULT.coeffVar)]);
         end
 end

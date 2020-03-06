@@ -9,8 +9,11 @@ CONFIG      =   getConfig();
 %% GETTING DATA
 DATA        =   readData(CONFIG);
 
+%% REMOVE OUTLIERS
+DATA        =   removeOutliers(DATA, CONFIG);
+
 %% OBTAINIG REGRESSION
-RESULT     =   regression(DATA, CONFIG);
+RESULT      =   regression(DATA, CONFIG);
 
 %% GETTING OUTPUT AND PLOTS
 getOutput(DATA, CONFIG, RESULT);
