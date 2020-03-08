@@ -29,8 +29,8 @@ function [CONFIG] = getConfig()
     CONFIG.REGRESSION.METHOD                        =   1;  % TODO
     
     CONFIG.REGRESSION.MATLAB_CF.MEAN.MODEL          =   'exp1';  % poly2, exp1
-    CONFIG.REGRESSION.MATLAB_CF.MEAN.START_PT       =   [0, -1];  % ONLY FOR NON Li
+    CONFIG.REGRESSION.MATLAB_CF.MEAN.START_PT       =   [0, 0];  % ONLY FOR NON Li
     CONFIG.REGRESSION.MATLAB_CF.VAR.MODEL           =   'exp1';   % poly2, exp1
-    CONFIG.REGRESSION.MATLAB_CF.VAR.START_PT        =   [0, -1];
+    CONFIG.REGRESSION.MATLAB_CF.VAR.START_PT        =   [0, 0];
     
 end
