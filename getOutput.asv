@@ -39,8 +39,8 @@ function getOutput(DATA, CONFIG, RESULT)
                 plot(DATA.X, sqrt(RESULT.sqrdErr), '.');               hold on;
                 xLimits = get(gca,'XLim');  %# Get the range of the x axis
                 plot(xVals, sqrt(RESULT.coeffVar(xVals)), 'c');        hold on;
-                plot(xVals, 2*sqrt(RESULT.coeffVar(xVals)), 'g');      hold on;
-                plot(xVals, 3*sqrt(RESULT.coeffVar(xVals)), 'r');      hold on;
+                plot(xVals, 2*sqrt(RESULT.coeffVar(xVals)), 'c');      hold on;
+                plot(xVals, 3*sqrt(RESULT.coeffVar(xVals)), 'c');      hold on;
                 xlim(xLimits);
                 xlabel(CONFIG.DATA.X); ylabel([CONFIG.DATA.Y ' \sigma']);
                 legend('y - \mu_y', '\sigma', '2\sigma', '3\sigma');
@@ -50,11 +50,11 @@ function getOutput(DATA, CONFIG, RESULT)
                 plot(DATA.X, sqrt(RESULT.sqrdErr), '.');               hold on;
                 xLimits = get(gca,'XLim');  %# Get the range of the x axis
                 plot(xVals, sqrt(RESULT.coeffVarW(xVals)), 'c');       hold on;
-                plot(xVals, 2*sqrt(RESULT.coeffVarW(xVals)), 'g');     hold on;
-                plot(xVals, 3*sqrt(RESULT.coeffVarW(xVals)), 'r');     hold on;
+                plot(xVals, 2*sqrt(RESULT.coeffVarW(xVals)), 'c');     hold on;
+                plot(xVals, 3*sqrt(RESULT.coeffVarW(xVals)), 'c');     hold on;
                 xlim(xLimits);
                 xlabel(CONFIG.DATA.X); ylabel([CONFIG.DATA.Y ' \sigma']);
-                legend('y - \mu_y', '\sigma', '2\sigma', '3\sigma');
+                legend('y - \mu_y', 'Weighted fitting for \sigma ', 'Weighted fitting ', 'Weighted 3\sigma fitting');
                 title(['Weighted fitting of the standard deviation. f(x) = ' formula(RESULT.coeffVar)]);
         end
 end
