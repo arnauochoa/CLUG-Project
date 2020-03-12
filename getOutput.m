@@ -56,5 +56,18 @@ function getOutput(DATA, CONFIG, RESULT)
                 xlabel(CONFIG.DATA.X); ylabel([CONFIG.DATA.Y ' \sigma']);
                 legend('y - \mu_y', '\sigma', '2\sigma', '3\sigma');
                 title(['Weighted fitting of the standard deviation. f(x) = ' formula(RESULT.coeffVar)]);
+        
+                [normError, normErrorW] = normalizeError(DATA,RESULT);
+                
+                figure;
+                normplot(normError);
+                xlabel('PR Error normalized'); ylabel('Probability');
+                title('Normal Probability Plot');
+                    
+                figure;
+                normplot(normErrorW);
+                xlabel('PR Error normalized'); ylabel('Probability');
+                title('Normal Probability Plot (Wheighted)');
+        
         end
 end
