@@ -62,33 +62,22 @@ function getOutput(DATA, CONFIG, RESULT)
                 quant   =   0.99;
                 sigma   =   2 * (quantile(normError, quant) - quantile(normError, .5));
                 pd      =   makedist('Normal', 'mu', mean(normError), 'sigma', sigma);
-                
                 figure;
                 probplot(normError, 'noref');
                 probplot(gca, pd);
                 grid on;
                 xlabel('PR Error normalized'); ylabel('Probability');
-                title(sprintf('Normal Probability Plot, sigma at %.4f quantile', quant));
-                
-                sigmaW   =   2 * (quantile(normErrorW, quant) - quantile(normErrorW, .5));
-                pdW      =   makedist('Normal', 'mu', mean(normErrorW), 'sigma', sigmaW);
+%                 title(sprintf('Normal Probability Plot, $\sigma = %.4f$', sigma),' interpreter','latex');
                 
                 figure;
-                probplot(normErrorW, 'noref');
-                probplot(gca, pdW);
-                grid on;
+                normplot(normError);
                 xlabel('PR Error normalized'); ylabel('Probability');
-                title(sprintf('Normal Probability Plot (Wheighted), sigma at %.4f quantile', quant));
-                
-%                 figure;
-%                 normplot(normError);
-%                 xlabel('PR Error normalized'); ylabel('Probability');
-%                 title('Normal Probability Plot');
-%                     
-%                 figure;
-%                 normplot(normErrorW);
-%                 xlabel('PR Error normalized'); ylabel('Probability');
-%                 title('Normal Probability Plot (Wheighted)');
+                title('Normal Probability Plot');
+                    
+                figure;
+                normplot(normErrorW);
+                xlabel('PR Error normalized'); ylabel('Probability');
+                title('Normal Probability Plot (Wheighted)');
         
         end
 end
