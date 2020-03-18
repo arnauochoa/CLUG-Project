@@ -19,13 +19,13 @@ function getOutput(DATA, CONFIG, RESULT)
                 legend('Data', 'Mean fitting', 'Weighted Mean fitting', 'True mean');
 
                 figure;
-                plot(DATA.X, RESULT.absErr, '.');                hold on;
+                plot(DATA.X, sqrt(RESULT.sqrdErr), '.');                hold on;
                 xLimits = get(gca,'XLim');  %# Get the range of the x axis
-                plot(xVals, RESULT.coeffStd(xVals), 'r');         hold on;
-                plot(xVals, RESULT.coeffStdW(xVals), 'c');        hold on;
+                plot(xVals, sqrt(RESULT.coeffVar(xVals)), 'r');         hold on;
+                plot(xVals, sqrt(RESULT.coeffVarW(xVals)), 'c');        hold on;
                 xlim(xLimits);
                 plot(DATA.X, DATA.VAR, 'g')
-                legend('Squared error', 'STD fitting', 'Weighted STD fitting', 'True variance')
+                legend('Squared error', 'Variance fitting', 'Weighted Variance fitting', 'True variance')
             case 2
                 %% MEAN FITTING
                 figure;
@@ -49,16 +49,13 @@ function getOutput(DATA, CONFIG, RESULT)
                     quantile95(i,1) = quantile(DATA.Y(xDisc == uniqueX(i)),0.95);
                 end
 
-                mse     =   mean((2*RESULT.coeffStd(uniqueX) - quantile95).^2);
-                fprintf('2-sigma MSE = %f\n', mse);
-                
                 figure;
                 yyaxis left
-                plot(DATA.X, RESULT.absErr, '.');               hold on;
+                plot(DATA.X, sqrt(RESULT.sqrdErr), '.');               hold on;
                 xLimits = get(gca,'XLim');  %# Get the range of the x axis
-                plot(xVals, RESULT.coeffStd(xVals), 'c-');
-                plot(xVals, 2*RESULT.coeffStd(xVals), 'g-');
-                plot(xVals, 3*RESULT.coeffStd(xVals), 'r-');
+                plot(xVals, sqrt(RESULT.coeffVar(xVals)), 'c-');
+                plot(xVals, 2*sqrt(RESULT.coeffVar(xVals)), 'g-');
+                plot(xVals, 3*sqrt(RESULT.coeffVar(xVals)), 'r-');
                 plot(uniqueX,quantile95,'k-','Marker','.','MarkerSize',16);
                 ylabel([CONFIG.DATA.Y ' \sigma']);
                 yyaxis right
@@ -68,7 +65,7 @@ function getOutput(DATA, CONFIG, RESULT)
                 xlabel(CONFIG.DATA.X);
                 ylabel('Number of points (%)');
                 legend('y - \mu_y', '\sigma', '2\sigma', '3\sigma','Quantile 0.95');
-                title(['Fitting of the standard deviation. f(x) = ' formula(RESULT.coeffStd)]);
+                title(['Fitting of the standard deviation. f(x) = ' formula(RESULT.coeffVar)]);
                 
                 %% WEIGHTED STD FITTING
                 edges = floor(min(DATA.X)):1:ceil(max(DATA.X));
@@ -83,16 +80,15 @@ function getOutput(DATA, CONFIG, RESULT)
                     quantile95(i,1) = quantile(DATA.Y(xDisc == uniqueX(i)),0.95);
                 end
                 
-                mseW     =   mean((2*RESULT.coeffStdW(uniqueX) - quantile95).^2);
-                fprintf('Weighted 2-sigma MSE = %f\n', mseW);
+                mse     =   mean((2*sqrt(RESULT.coeffVarW(uniqueX)) - quantile95).^2);
 
                 figure;
                 yyaxis left
-                plot(DATA.X, RESULT.absErrW, '.');               hold on;
+                plot(DATA.X, sqrt(RESULT.sqrdErrW), '.');               hold on;
                 xLimits = get(gca,'XLim');  %# Get the range of the x axis
-                plot(xVals, RESULT.coeffStdW(xVals), 'c-');
-                plot(xVals, 2*RESULT.coeffStdW(xVals), 'g-');
-                plot(xVals, 3*RESULT.coeffStdW(xVals), 'r-');
+                plot(xVals, sqrt(RESULT.coeffVarW(xVals)), 'c-');
+                plot(xVals, 2*sqrt(RESULT.coeffVarW(xVals)), 'g-');
+                plot(xVals, 3*sqrt(RESULT.coeffVarW(xVals)), 'r-');
                 plot(uniqueX,quantile95,'k-','Marker','.','MarkerSize',16);
                 ylabel([CONFIG.DATA.Y ' \sigma']);
                 yyaxis right
@@ -102,7 +98,7 @@ function getOutput(DATA, CONFIG, RESULT)
                 xlabel(CONFIG.DATA.X);
                 ylabel('Number of points (%)');
                 legend('y - \mu_y', '\sigma', '2\sigma', '3\sigma','Quantile 0.95');
-                title(['Fitting of the weighted standard deviation. f(x) = ' formula(RESULT.coeffStdW)]);               
+                title(['Fitting of the weighted standard deviation. f(x) = ' formula(RESULT.coeffVarW)]);               
                 
                 %% CDF PLOTS
                 [normError, normErrorW] = normalizeError(DATA,RESULT);

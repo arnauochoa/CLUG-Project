@@ -20,7 +20,7 @@ function [CONFIG] = getConfig()
                                                     % 2: real data
     % Data options:
     % Elevation, PR error, CN0
-    CONFIG.DATA.X                                   =   'Elevation';
+    CONFIG.DATA.X                                   =   'CN0';
     CONFIG.DATA.Y                                   =   'PR error';
     CONFIG.DATA.Y_UPPER_THRESHOLD                   =   300;
     CONFIG.DATA.Y_LOWER_THRESHOLD                   =   -100;
@@ -28,9 +28,9 @@ function [CONFIG] = getConfig()
     %% REGRESSION METHOD
     CONFIG.REGRESSION.METHOD                        =   1;  % TODO
     
-    CONFIG.REGRESSION.MATLAB_CF.MEAN.MODEL          =   'exp1';  % poly2, exp1
-    CONFIG.REGRESSION.MATLAB_CF.MEAN.START_PT       =   [0, 0];  % ONLY FOR NON Li
-    CONFIG.REGRESSION.MATLAB_CF.VAR.MODEL           =   'exp1';   % poly2, exp1
+    CONFIG.REGRESSION.MATLAB_CF.MEAN.MODEL          =   'poly2';  % poly2, exp1
+    CONFIG.REGRESSION.MATLAB_CF.MEAN.START_PT       =   [0, 0];  % Only for NON-LINEAR models
+    CONFIG.REGRESSION.MATLAB_CF.VAR.MODEL           =   'poly2';   % poly2, exp1
     CONFIG.REGRESSION.MATLAB_CF.VAR.START_PT        =   [0, 0];
     
 end

@@ -22,26 +22,28 @@ function [RESULT] = regression(DATA, CONFIG)
                                 CONFIG.REGRESSION.MATLAB_CF.MEAN.MODEL,             ...
                                 MEAN_OPTIONS);
             
-            % Curve fitting for the variance of the random noise
+            % Curve fitting for the STD of the random noise
             meanReg             =   RESULT.coeffMean(DATA.X);
-            RESULT.sqrdErr      =   (DATA.Y - meanReg).^2;
-            RESULT.coeffVar     =   fit(DATA.X, RESULT.sqrdErr,                     ...
+            RESULT.absErr       =   abs(DATA.Y - meanReg);
+            RESULT.coeffStd     =   fit(DATA.X, RESULT.absErr,                     ...
                                 CONFIG.REGRESSION.MATLAB_CF.VAR.MODEL,              ...
                                 VAR_OPTIONS); 
             
             % Obtain weights
-            weights             =   1./sqrt(RESULT.coeffVar(DATA.X));
+            weights             =   1./RESULT.coeffStd(DATA.X);
             weights(isinf(weights)) = realmax;
             
-            % Recompute regression for mean and variance
+            % Recompute regression for mean and STD
             MEAN_OPTIONS.Weights = weights;
             VAR_OPTIONS.Weights = weights;
             
             RESULT.coeffMeanW   =   fit(DATA.X, DATA.Y,                             ...
                                 CONFIG.REGRESSION.MATLAB_CF.MEAN.MODEL,             ...
                                 MEAN_OPTIONS);
-                            
-            RESULT.coeffVarW    =   fit(DATA.X, RESULT.sqrdErr,                     ...
+            
+            meanRegW            =   RESULT.coeffMeanW(DATA.X);
+            RESULT.absErrW      =   abs(DATA.Y - meanRegW);
+            RESULT.coeffStdW    =   fit(DATA.X, RESULT.absErrW,                     ...
                                 CONFIG.REGRESSION.MATLAB_CF.VAR.MODEL,              ...
                                 VAR_OPTIONS);
         case 2 % Custom classical regression model
