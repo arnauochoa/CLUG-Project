@@ -49,8 +49,8 @@ function getOutput(DATA, CONFIG, RESULT)
                     quantile95(i,1) = quantile(DATA.Y(xDisc == uniqueX(i)),0.95);
                 end
 
-                mse     =   mean((2*RESULT.coeffStd(uniqueX) - quantile95).^2);
-                fprintf('2-sigma MSE = %f\n', mse);
+                rmse     =   sqrt(mean((2*RESULT.coeffStd(uniqueX) - quantile95).^2));
+                fprintf('2-sigma RMSE = %f\n', rmse);
                 
                 figure;
                 yyaxis left
@@ -83,8 +83,8 @@ function getOutput(DATA, CONFIG, RESULT)
                     quantile95(i,1) = quantile(DATA.Y(xDisc == uniqueX(i)),0.95);
                 end
                 
-                mseW     =   mean((2*RESULT.coeffStdW(uniqueX) - quantile95).^2);
-                fprintf('Weighted 2-sigma MSE = %f\n', mseW);
+                rmseW     =   sqrt(mean((2*RESULT.coeffStdW(uniqueX) - quantile95).^2));
+                fprintf('Weighted 2-sigma RMSE = %f\n', rmseW);
 
                 figure;
                 yyaxis left
