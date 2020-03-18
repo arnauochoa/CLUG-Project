@@ -59,15 +59,26 @@ function getOutput(DATA, CONFIG, RESULT)
         
                 [normError, normErrorW] = normalizeError(DATA,RESULT);
                 
+%                 N       =   length(DATA.X);
+                quant   =   .99;
+                sigma   =   2 * (quantile(normError, quant) - quantile(normError, .5));
+                pd      =   makedist('Normal', 'mu', mean(normError), 'sigma', sigma);
+                
                 figure;
-                normplot(normError);
+                probplot(normError, 'noref');
+                probplot(gca, pd);
+                grid on;
                 xlabel('PR Error normalized'); ylabel('Probability');
-                title('Normal Probability Plot');
-                    
+                title(sprintf('Normal Probability Plot, sigma at %.4f quantile', quant));
+                
+                sigmaW   =   2 * (quantile(normErrorW, quant) - quantile(normErrorW, .5));
+                pdW      =   makedist('Normal', 'mu', mean(normErrorW), 'sigma', sigmaW);
+                
                 figure;
-                normplot(normErrorW);
+                probplot(normErrorW, 'noref');
+                probplot(gca, pdW);
+                grid on;
                 xlabel('PR Error normalized'); ylabel('Probability');
-                title('Normal Probability Plot (Wheighted)');
-        
+                title(sprintf('Normal Probability Plot (Wheighted), sigma at %.4f quantile', quant));
         end
 end
