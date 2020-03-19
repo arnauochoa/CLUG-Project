@@ -1,4 +1,4 @@
-function [DATA] = readData(CONFIG)
+function [Data] = readData(Config)
 % ----------------------------------------------------------------------------------------
 % This function reads the data from data mat file
 %
@@ -9,14 +9,14 @@ function [DATA] = readData(CONFIG)
 %           DATA:       Struct. Original data
 %
 % ----------------------------------------------------------------------------------------
-    switch CONFIG.DATA.TYPE
+    switch Config.Data.Type
         case 1
-            load('data.mat');
+            load('Data/data.mat');
 
-            DATA.X{1}     =   x';
-            DATA.Y      =   y';
-            DATA.MEAN   =   trueMean';
-            DATA.VAR    =   trueVar';
+            Data.X{1}     =   x';
+            Data.Y      =   y';
+            Data.Mean   =   trueMean';
+            Data.Var    =   trueVar';
         case 2
             directory = '../PR_data/';
             AllFiles = dir([directory '*.mat']);
@@ -47,19 +47,19 @@ function [DATA] = readData(CONFIG)
             alldata_pre_clean = alldata_pre(cleandata);
             alldata_el_clean  = rad2deg(alldata_el(cleandata));
             
-            N       =   length(alldata_cn0_clean);
-            DATA.X  =   nan(N, CONFIG.DATA.N_VARS);
-            for i = 1:CONFIG.DATA.N_VARS
-                switch CONFIG.DATA.X{i}
-                    case 'Elevation',   DATA.X(:, i)  =   alldata_el_clean;
-                    case 'PR error',    DATA.X(:, i)  =   alldata_pre_clean;
-                    case 'CN0',         DATA.X(:, i)  =   alldata_cn0_clean;
+            nPts    =   length(alldata_cn0_clean);
+            Data.X  =   nan(nPts, Config.Data.N_Vars);
+            for i = 1:Config.Data.N_Vars
+                switch Config.Data.X{i}
+                    case 'Elevation',   Data.X(:, i)  =   alldata_el_clean;
+                    case 'PR error',    Data.X(:, i)  =   alldata_pre_clean;
+                    case 'CN0',         Data.X(:, i)  =   alldata_cn0_clean;
                 end
             end
-            switch CONFIG.DATA.Y
-                case 'Elevation',   DATA.Y      =   alldata_el_clean;
-                case 'PR error',    DATA.Y      =   alldata_pre_clean;
-                case 'CN0',         DATA.Y      =   alldata_cn0_clean;
+            switch Config.Data.Y
+                case 'Elevation',   Data.Y      =   alldata_el_clean;
+                case 'PR error',    Data.Y      =   alldata_pre_clean;
+                case 'CN0',         Data.Y      =   alldata_cn0_clean;
             end
     end
 end
