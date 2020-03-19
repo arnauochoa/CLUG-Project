@@ -1,4 +1,4 @@
-function [RESULT] = regression(DATA, CONFIG)
+function [Result] = regression(Data, Config)
 % ----------------------------------------------------------------------------------------
 % This function applies the regression technique selected in configuration
 %
@@ -11,11 +11,11 @@ function [RESULT] = regression(DATA, CONFIG)
 %
 % ----------------------------------------------------------------------------------------
     
-    RESULT = struct;
+    Result = struct;
 
-    switch CONFIG.REGRESSION.METHOD
+    switch Config.Regression.Method
         case 1 % MATLAB curve fitting function
-            [RESULT] = fitting(DATA, CONFIG);
+            [Result] = fitting(Data, Config);
         case 2 % Custom classical regression model
             % TODO
             

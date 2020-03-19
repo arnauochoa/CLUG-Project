@@ -2,18 +2,19 @@
 % Main script that reads data, sets parameters and computes regression
 % ----------------------------------------------------------------------------------------
 close all; clear; clc;
+addpath(genpath('./'));
 
 %% GETTING CONFIG
-CONFIG      =   getConfig();
+Config      =   getConfig();
 
 %% GETTING DATA
-DATA        =   readData(CONFIG);
+Data        =   readData(Config);
 
 %% REMOVE OUTLIERS
-DATA        =   removeOutliers(DATA, CONFIG);
+Data        =   removeOutliers(Data, Config);
 
 %% OBTAINIG REGRESSION
-RESULT      =   regression(DATA, CONFIG);
+Result      =   regression(Data, Config);
 
 %% GETTING OUTPUT AND PLOTS
-getOutput(DATA, CONFIG, RESULT);
+getOutput(Data, Config, Result);

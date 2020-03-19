@@ -1,4 +1,4 @@
-function [normError, normErrorW] = normalizeError(DATA,RESULT)
+function [normError, normErrorW] = normalizeError(Data, Result)
 % ----------------------------------------------------------------------------------------
 % This function normalizes the squared error by dividing by its STD.
 %
@@ -9,7 +9,7 @@ function [normError, normErrorW] = normalizeError(DATA,RESULT)
 %           normError   Normalized error for fitting   
 %           normErrorW  Normalized error for weighting fitting
 % ----------------------------------------------------------------------------------------
-    normError = sort(DATA.Y./RESULT.coeffStd(DATA.X));
-    normErrorW = sort(DATA.Y./RESULT.coeffStdW(DATA.X));
+    normError = sort(Data.Y./Result.CoeffStd(Data.X));
+    normErrorW = sort(Data.Y./Result.CoeffStdW(Data.X));
 
 end
