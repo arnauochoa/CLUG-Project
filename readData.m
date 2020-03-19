@@ -13,7 +13,7 @@ function [DATA] = readData(CONFIG)
         case 1
             load('data.mat');
 
-            DATA.X      =   x';
+            DATA.X{1}     =   x';
             DATA.Y      =   y';
             DATA.MEAN   =   trueMean';
             DATA.VAR    =   trueVar';
@@ -47,10 +47,14 @@ function [DATA] = readData(CONFIG)
             alldata_pre_clean = alldata_pre(cleandata);
             alldata_el_clean  = rad2deg(alldata_el(cleandata));
             
-            switch CONFIG.DATA.X
-                case 'Elevation',   DATA.X      =   alldata_el_clean;
-                case 'PR error',    DATA.X      =   alldata_pre_clean;
-                case 'CN0',         DATA.X      =   alldata_cn0_clean;
+            N       =   length(alldata_cn0_clean);
+            DATA.X  =   nan(N, CONFIG.DATA.N_VARS);
+            for i = 1:CONFIG.DATA.N_VARS
+                switch CONFIG.DATA.X{i}
+                    case 'Elevation',   DATA.X(:, i)  =   alldata_el_clean;
+                    case 'PR error',    DATA.X(:, i)  =   alldata_pre_clean;
+                    case 'CN0',         DATA.X(:, i)  =   alldata_cn0_clean;
+                end
             end
             switch CONFIG.DATA.Y
                 case 'Elevation',   DATA.Y      =   alldata_el_clean;
