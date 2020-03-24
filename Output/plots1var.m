@@ -103,4 +103,14 @@ function plots1var(Data, Config, Result)
     grid on;
     xlabel('PR Error normalized'); ylabel('Probability');
     title(sprintf('Normal Probability Plot (Wheighted), sigma at %.4f quantile', Config.Output.Cdf.RefVarQuant));
+    
+    
+    %% SAVE DATA
+    % Filtered quantile
+    xData               =   Config.Data.X{1};
+    xThreshold          =   Config.Output.FData.XThreshold;
+    filtQuantile        =   quantile95(uniqueX >= xThreshold);
+    xFiltered           =   uniqueX(uniqueX >= xThreshold);
+    save('percentile95.mat', 'xData', 'xThreshold', 'xFiltered', 'filtQuantile');
+    
 end

@@ -22,8 +22,8 @@ function [Config] = getConfig()
     
     % Data options:
     % Elevation, PR error, CN0
-    Config.Data.X{1}                                =   'Elevation';
-    Config.Data.X{2}                                =   'CN0';
+    Config.Data.X{1}                                =   'CN0';
+    Config.Data.X{2}                                =   'Elevation';
     Config.Data.Y                                   =   'PR error';
     Config.Data.Y_Upper_Threshold                   =   300;    % Threshold for PRE
     Config.Data.Y_Lower_Threshold                   =   -100;   % Threshold for PRE
@@ -37,7 +37,10 @@ function [Config] = getConfig()
     Config.Regression.Matlab_CF.Var.StartPt         =   [0, 0];
     
     %% OUTPUT CONFIGURATIONS
+    % CDF config
     Config.Output.Cdf.RefVarQuant                   =   .99;    % Quantile for the reference variance
+    % Filtered quantile
+    Config.Output.FData.XThreshold                  =   38;
     
     
     %% ERROR CONTROL
