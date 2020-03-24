@@ -18,12 +18,12 @@ function [Config] = getConfig()
     %% DATA
     Config.Data.Type                                =   2;  % 1: generated data
                                                     % 2: real data
-    Config.Data.N_Vars                              =   2;  % For N = 2 --> poly22
+    Config.Data.N_Vars                              =   1;  % For N = 2 --> poly22
     
     % Data options:
     % Elevation, PR error, CN0
-    Config.Data.X{1}                                =   'CN0';
-    Config.Data.X{2}                                =   'Elevation';
+    Config.Data.X{1}                                =   'Elevation';
+    Config.Data.X{2}                                =   'CN0';
     Config.Data.Y                                   =   'PR error';
     Config.Data.Y_Upper_Threshold                   =   300;    % Threshold for PRE
     Config.Data.Y_Lower_Threshold                   =   -100;   % Threshold for PRE
@@ -31,9 +31,9 @@ function [Config] = getConfig()
     %% REGRESSION METHOD
     Config.Regression.Method                        =   1;  % TODO
     
-    Config.Regression.Matlab_CF.Mean.Model          =   'poly22';    % poly2, exp1, poly22
+    Config.Regression.Matlab_CF.Mean.Model          =   'exp1';    % poly2, exp1, poly22
     Config.Regression.Matlab_CF.Mean.StartPt        =   [0, 0];     % Only for NON-LINEAR models
-    Config.Regression.Matlab_CF.Var.Model           =   'poly22';    % poly2, exp1, poly22
+    Config.Regression.Matlab_CF.Var.Model           =   'exp1';    % poly2, exp1, poly22
     Config.Regression.Matlab_CF.Var.StartPt         =   [0, 0];
     
     %% OUTPUT CONFIGURATIONS

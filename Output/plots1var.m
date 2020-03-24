@@ -26,7 +26,7 @@ function plots1var(Data, Config, Result)
     end
 
     rmse        =   sqrt(mean((2*Result.CoeffStd(uniqueX) - quantile95).^2));
-    fprintf('2-sigma MSE = %f\n', rmse);
+    fprintf('2-sigma RMSE = %f\n', rmse);
 
     figure;
     yyaxis left
@@ -60,7 +60,7 @@ function plots1var(Data, Config, Result)
     end
 
     rmseW     =   sqrt(mean((2*Result.CoeffStdW(uniqueX) - quantile95).^2));
-    fprintf('Weighted 2-sigma MSE = %f\n', rmseW);
+    fprintf('Weighted 2-sigma RMSE = %f\n', rmseW);
 
     figure;
     yyaxis left

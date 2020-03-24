@@ -28,6 +28,13 @@ function getOutput(Data, Config, Result)
                 plot(Data.X, Data.Var, 'g')
                 legend('Squared error', 'STD fitting', 'Weighted STD fitting', 'True variance')
             case 2
+                disp('========== Fitting results: ==========');
+                disp(' >> Mean:');
+                disp(Result.CoeffMeanW);
+                disp(' >> STD:');
+                disp(Result.CoeffStdW);
+                
+                
                 switch Config.Data.N_Vars
                     case 1
                         plots1var(Data, Config, Result);
