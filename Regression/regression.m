@@ -16,11 +16,9 @@ function [Result] = regression(Data, Config)
     switch Config.Regression.Method
         case 1 % MATLAB curve fitting function
             [Result] = fitting(Data, Config);
-        case 2 % Custom classical regression model
-            % TODO
+        case 2 % Gradient Descent
             
-        case 3 % Machine learning
-            % TODO
+            [Result] = mlFitting(Data, Config);
             
     end
     
