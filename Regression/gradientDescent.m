@@ -1,4 +1,4 @@
-function [theta, mu, sigma, J_history, error] = gradientDescent(X, y, Config)
+function [theta, mu, sigma, J_history, error, data_norm] = gradientDescent(X, y, Config)
 % ----------------------------------------------------------------------------------------
 % This function applies the gradient descent
 %
@@ -36,4 +36,5 @@ function [theta, mu, sigma, J_history, error] = gradientDescent(X, y, Config)
     end
     
     error = (X_norm * theta - y);
+    data_norm = [X_norm(:, 2) X_norm(:, 3)];
 end
