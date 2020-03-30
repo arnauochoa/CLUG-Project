@@ -29,11 +29,12 @@ function [Config] = getConfig()
     Config.Data.Y_Lower_Threshold                   =   -100;   % Threshold for PRE
     
     %% REGRESSION METHOD
-    Config.Regression.Method                        =   2;  % TODO
+    Config.Regression.Method                        =   1;  % TODO
     
-    Config.Regression.Matlab_CF.Mean.Model          =   'exp1';    % poly2, exp1, poly22
+    %% MATLAB FITTING
+    Config.Regression.Matlab_CF.Mean.Model          =   'poly22';    % poly2, exp1, poly22
     Config.Regression.Matlab_CF.Mean.StartPt        =   [0, 0];     % Only for NON-LINEAR models
-    Config.Regression.Matlab_CF.Var.Model           =   'exp1';    % poly2, exp1, poly22
+    Config.Regression.Matlab_CF.Var.Model           =   'poly22';    % poly2, exp1, poly22
     Config.Regression.Matlab_CF.Var.StartPt         =   [0, 0];
     
     %% GRADIENT DESCENT METHOD
