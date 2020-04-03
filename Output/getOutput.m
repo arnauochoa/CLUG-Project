@@ -67,33 +67,34 @@ function getOutput(Data, Config, Result)
                 plot(Result.MLfit.J_historyMean);
                 xlabel('Iteration'); ylabel('Cost function J(\theta)');
                 title('Mean estimation');
-
+                
                 figure;
-                fcontour(Result.MLfit.fmean, 'Fill', 'on');
-                xlim([min(Result.MLfit.X_norm(:, 1)) max(Result.MLfit.X_norm(:, 1))]);
-                ylim([min(Result.MLfit.X_norm(:, 2)) max(Result.MLfit.X_norm(:, 2))]);
-                xlabel(strcat(Config.Data.X{1}, ' normalized')); 
-                ylabel(strcat(Config.Data.X{2}, ' normalized'));
-                h = colorbar;
-                h.Label.Interpreter = 'latex';
-                h.Label.FontSize = 14;
-                set(get(h,'label'),'string', '$\hat{\mu} (m)$');
+                fcontour(Result.MLfit.fmean_denorm, 'Fill', 'on');
+                xlim([min(Data.X(:, 1)) max(Data.X(:, 1))]);
+                ylim([min(Data.X(:, 2)) max(Data.X(:, 2))]);
+                xlabel(Config.Data.X{1}); 
+                ylabel(Config.Data.X{2});
+                m = colorbar;
+                m.Label.Interpreter = 'latex';
+                m.Label.FontSize = 14;
+                set(get(m,'label'),'string', '$\hat{\mu} (m)$');
 
                 figure;
                 plot(Result.MLfit.J_historyStd);
                 xlabel('Iteration'); ylabel('Cost function J(\theta)');
                 title('Standard deviation estimation');
-
+                
                 figure;
-                fcontour(Result.MLfit.fstd, 'Fill', 'on');
-                xlim([min(Result.MLfit.X_norm(:, 1)) max(Result.MLfit.X_norm(:, 1))]);
-                ylim([min(Result.MLfit.X_norm(:, 2)) max(Result.MLfit.X_norm(:, 2))]);
-                xlabel(strcat(Config.Data.X{1}, ' normalized')); 
-                ylabel(strcat(Config.Data.X{2}, ' normalized'));
-                h = colorbar;
-                h.Label.Interpreter = 'latex';
-                h.Label.FontSize = 14;
-                set(get(h,'label'),'string', '$\hat{\sigma} (m)$');
+                fcontour(Result.MLfit.fstd_denorm, 'Fill', 'on');
+                xlim([min(Data.X(:, 1)) max(Data.X(:, 1))]);
+                ylim([min(Data.X(:, 2)) max(Data.X(:, 2))]);
+                xlabel(Config.Data.X{1}); 
+                ylabel(Config.Data.X{2});
+                n = colorbar;
+                n.Label.Interpreter = 'latex';
+                n.Label.FontSize = 14;
+                caxis([0 30]);
+                set(get(n,'label'),'string', '$\hat{\sigma} (m)$');
         end
                 
                 

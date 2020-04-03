@@ -33,8 +33,8 @@ function plots2vars(Data, Config, Result)
     figure;
     contourf(X, Y, Z);
     xlabel(Config.Data.X{1}); ylabel(Config.Data.X{2});
-    h = colorbar;
-    set(get(h,'label'),'string','Number of points (%)');
+    u = colorbar;
+    set(get(u,'label'),'string','Number of points (%)');
     title('Distribution of points');
     
     figure;
@@ -53,10 +53,10 @@ function plots2vars(Data, Config, Result)
     set(ph, 'Fill', 'on', 'LineColor', 'auto');
     grid off;
     xlabel(Config.Data.X{1}); ylabel(Config.Data.X{2});
-    h = colorbar;
-    h.Label.Interpreter = 'latex';
-    h.Label.FontSize = 14;
-    set(get(h,'label'),'string', '$\hat{\mu} (m)$');
+    m = colorbar;
+    m.Label.Interpreter = 'latex';
+    m.Label.FontSize = 14;
+    set(get(m,'label'),'string', '$\hat{\mu} (m)$');
     title('Fitting of the mean (Weighted)');
     
     figure;
@@ -64,10 +64,10 @@ function plots2vars(Data, Config, Result)
     set(ph, 'Fill', 'on', 'LineColor', 'auto');
     grid off;
     xlabel(Config.Data.X{1}); ylabel(Config.Data.X{2}); 
-    h = colorbar;
-    h.Label.Interpreter = 'latex';
-    h.Label.FontSize = 14;
-    set(get(h,'label'),'string', '$\hat{\sigma} (m)$');
+    k = colorbar;
+    k.Label.Interpreter = 'latex';
+    k.Label.FontSize = 14;
+    set(get(k,'label'),'string', '$\hat{\sigma} (m)$');
     title('Fitting of the \sigma');
     
     figure;
@@ -75,9 +75,9 @@ function plots2vars(Data, Config, Result)
     set(ph, 'Fill', 'on', 'LineColor', 'auto');
     grid off;
     xlabel(Config.Data.X{1}); ylabel(Config.Data.X{2});
-    h = colorbar;
-    h.Label.Interpreter = 'latex';
-    h.Label.FontSize = 14;
-    set(get(h,'label'),'string', '$\hat{\sigma} (m)$');
+    j = colorbar;
+    j.Label.Interpreter = 'latex';
+    j.Label.FontSize = 14;
+    set(get(j,'label'),'string', '$\hat{\sigma} (m)$');
     title('Fitting of the \sigma (Weighted)');
 end
