@@ -29,7 +29,7 @@ function [Config] = getConfig()
     Config.Data.Y_Lower_Threshold                   =   -100;   % Threshold for PRE
     
     %% REGRESSION METHOD
-    Config.Regression.Method                        =   1;  % TODO
+    Config.Regression.Method                        =   2;  % TODO
     
     %% MATLAB FITTING
     Config.Regression.Matlab_CF.Mean.Model          =   'poly22';    % poly2, exp1, poly22

@@ -17,9 +17,7 @@ function [Result] = regression(Data, Config)
         case 1 % MATLAB curve fitting function
             [Result] = fitting(Data, Config);
         case 2 % Gradient Descent
-            
             [Result] = mlFitting(Data, Config);
-            
     end
     
 end
