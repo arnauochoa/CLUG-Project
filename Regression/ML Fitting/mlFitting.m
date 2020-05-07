@@ -30,6 +30,7 @@ function [Result] = mlFitting(Data, Config)
     Result.MLfit.fstd  =   Xvar * Result.MLfit.thetaStd;
                                 
     evalFStd   =   Xmap * Result.MLfit.thetaStd;
-    Result.MLfit.stdRMSE   =   1/m * ((evalFStd - abs(Result.MLfit.errorMean))' * (evalFStd - abs(Result.MLfit.errorMean)));
+    Result.MLfit.stdRMSE   =   1/m * ((evalFStd - abs(Result.MLfit.errorMean))' ...
+        * (evalFStd - abs(Result.MLfit.errorMean)));
     
 end
