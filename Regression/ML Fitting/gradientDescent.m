@@ -12,20 +12,12 @@ function [theta, mu, sigma, J_history, error, data_norm] = gradientDescent(X, y,
 % ----------------------------------------------------------------------------------------
     % Constants
     alpha       =   Config.Regression.GradDes.Alpha;
-    [m, n]      =   size(X);
-    comb        =   combinator(n, Config.Regression.GradDes.Deg, 'c', 'r');
-    nComb       =   size(comb, 1);
-    nTheta      =   1 + n + nComb;
-    theta       =   zeros(nTheta, 1);
 
     [X_norm, mu, sigma] = featureNormalize(X);
+    X_norm = mapFeatures(X_norm, Config.Regression.GradDes.Deg);
     
-    % Add intercept term to X
-    for iComb = 1:nComb
-        ind     =   comb(iComb, :);
-        X_norm  =   [X_norm, X_norm(:, ind(1)) .* X_norm(:, ind(2))];
-    end
-    X_norm  =   [ones(m, 1) X_norm];
+    [m, nTheta]      =   size(X_norm);
+    theta       =   zeros(nTheta, 1);
     
     iter = 1;
     while iter < Config.Regression.GradDes.MaxIter
