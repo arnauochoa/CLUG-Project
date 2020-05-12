@@ -3,6 +3,9 @@
 *.fig
 *.png
 
+# Data files
+*.mat
+
 # Windows default autosave extension
 *.asv
 
