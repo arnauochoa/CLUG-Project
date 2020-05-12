@@ -34,14 +34,11 @@ function getOutput(Data, Config, Result)
                     disp(Result.CoeffMeanW);
                     disp(' >> STD:');
                     disp(Result.CoeffStdW);
-                    disp(' >> Mean RMSE:');
-                    disp(Result.MeanRMSE);
-                    disp(' >> Mean RMSE Weighted:');
-                    disp(Result.MeanRMSEW);
-                    disp(' >> STD RMSE:');
-                    disp(Result.StdRMSE);
-                    disp(' >> STD RMSE Weighted:');
-                    disp(Result.StdRMSEW);
+                    fprintf(' >> Mean RMSE: %0.4f\n', Result.MeanRMSE);
+                    fprintf(' >> Mean RMSE Weighted: %0.4f\n', Result.MeanRMSEW);
+                    fprintf(' >> STD RMSE: %0.4f\n', Result.StdRMSE);
+                    fprintf(' >> STD RMSE Weighted: %0.4f\n', Result.StdRMSEW);
+                    fprintf('---- Prediction RMSE: %0.4f ----\n', Result.PredRMSE);
 
                     switch Config.Data.N_Vars
                         case 1
@@ -50,7 +47,7 @@ function getOutput(Data, Config, Result)
                             plots2vars(Data, Config, Result);
                     end
             end
-        case 2 % ML fitting
-            plotsML(Data, Config, Result)
+        case 2 % Gradient descent fitting
+            plotsGD(Data, Config, Result)
     end     
 end

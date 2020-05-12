@@ -1,25 +1,24 @@
-function plotsML(Data, Config, Result)
+function plotsGD(Data, Config, Result)
 
 
     disp('========== Fitting results: ==========');
     disp(' >> Mean:');
-    disp(Result.MLfit.thetaMean);
+    disp(Result.GD_Fit.ThetaMean);
     disp(' >> STD:');
-    disp(Result.MLfit.thetaStd);
-    disp(' >> Mean RMSE:');
-    disp(Result.MLfit.meanRMSE);
-    disp(' >> STD RMSE:');
-    disp(Result.MLfit.stdRMSE);
+    disp(Result.GD_Fit.ThetaStd);
+    fprintf(' >> Mean RMSE: %0.4f\n', Result.GD_Fit.MeanRMSE);
+    fprintf(' >> STD RMSE: %0.4f\n', Result.GD_Fit.StdRMSE);
+    fprintf('---- Prediction RMSE: %0.4f ----\n', Result.GDfit.PredRMSE);
 
     figure;
-    plot(Result.MLfit.J_historyMean);
+    plot(Result.GD_Fit.CostFunStd);
     xlabel('Iteration'); ylabel('Cost function J(\theta)');
     title('Mean estimation');
 
     figure;
-    fcontour(Result.MLfit.fmean, 'Fill', 'on');
-    xlim([min(Result.MLfit.X_norm(:, 1)) max(Result.MLfit.X_norm(:, 1))]);
-    ylim([min(Result.MLfit.X_norm(:, 2)) max(Result.MLfit.X_norm(:, 2))]);
+    fcontour(Result.GD_Fit.Fmean, 'Fill', 'on');
+    xlim([min(Data.X(:, 1)) max(Data.X(:, 1))]);
+    ylim([min(Data.X(:, 2)) max(Data.X(:, 2))]);
     xlabel(strcat(Config.Data.X{1}, ' normalized')); 
     ylabel(strcat(Config.Data.X{2}, ' normalized'));
     h = colorbar;
@@ -28,14 +27,14 @@ function plotsML(Data, Config, Result)
     set(get(h,'label'),'string', '$\hat{\mu} (m)$');
 
     figure;
-    plot(Result.MLfit.J_historyStd);
+    plot(Result.GD_Fit.CostFunStd);
     xlabel('Iteration'); ylabel('Cost function J(\theta)');
     title('Standard deviation estimation');
 
     figure;
-    fcontour(Result.MLfit.fstd, 'Fill', 'on');
-    xlim([min(Result.MLfit.X_norm(:, 1)) max(Result.MLfit.X_norm(:, 1))]);
-    ylim([min(Result.MLfit.X_norm(:, 2)) max(Result.MLfit.X_norm(:, 2))]);
+    fcontour(Result.GD_Fit.Fstd, 'Fill', 'on');
+    xlim([min(Data.X(:, 1)) max(Data.X(:, 1))]);
+    ylim([min(Data.X(:, 2)) max(Data.X(:, 2))]);
     xlabel(strcat(Config.Data.X{1}, ' normalized')); 
     ylabel(strcat(Config.Data.X{2}, ' normalized'));
     h = colorbar;

@@ -12,11 +12,19 @@ function [Result] = regression(Data, Config)
 % ----------------------------------------------------------------------------------------
     
     Result = struct;
+    
+    % TODO: remove this, reduced data for test purposes >>>>>>>
+    nData   = 1e3;
+    Data.X  = Data.X(1:nData, :);
+    Data.Y  = Data.Y(1:nData);
+    % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     switch Config.Regression.Method
         case 1 % MATLAB curve fitting function
             [Result] = fitting(Data, Config);
         case 2 % Gradient Descent
+            [Result] = gdFitting(Data, Config);
+        case 3 % Machine Learning (Neural Network)
             [Result] = mlFitting(Data, Config);
     end
     

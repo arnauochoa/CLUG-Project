@@ -1,8 +1,8 @@
 function Xres = mapFeatures(X, degree)
 
+    % Initializations
     [m, n]      =   size(X);
-    % Add intercept term to X
-    Xres        =   ones(m, 1);
+    Xres        =   [];
     for deg = 1:degree
         comb        =   combinator(n, deg, 'c', 'r');
         nComb       =   size(comb, 1);

@@ -19,17 +19,16 @@ function [Config] = getConfig()
     Config.Data.Type                                =   2;  % 1: generated data
                                                     % 2: real data
     Config.Data.N_Vars                              =   2;  % For N = 2 --> poly22
-    
+
     % Data options:
     % Elevation, PR error, CN0
+    % IMPORTANT: make coincide with config in 'prepareData.m'
     Config.Data.X{1}                                =   'CN0';
     Config.Data.X{2}                                =   'Elevation';
     Config.Data.Y                                   =   'PR error';
-    Config.Data.Y_Upper_Threshold                   =   300;    % Threshold for PRE
-    Config.Data.Y_Lower_Threshold                   =   -100;   % Threshold for PRE
     
     %% REGRESSION METHOD
-    Config.Regression.Method                        =   2;  % TODO
+    Config.Regression.Method                        =   3;  % TODO
     
     %% MATLAB FITTING
     Config.Regression.Matlab_CF.Mean.Model          =   'poly22';    % poly2, exp1, poly22
@@ -38,9 +37,19 @@ function [Config] = getConfig()
     Config.Regression.Matlab_CF.Var.StartPt         =   [0, 0];
     
     %% GRADIENT DESCENT METHOD
-    Config.Regression.GradDes.Deg         =   2;          % Degree of the gypothesis equation
-    Config.Regression.GradDes.MaxIter     =   100;
-    Config.Regression.GradDes.Alpha       =   0.1;
+    Config.Regression.GradDes.Deg           =   2;          % Degree of the hypothesis equation
+    Config.Regression.GradDes.MaxIter       =   100;
+    Config.Regression.GradDes.Alpha         =   0.1;
+    
+    %% NEURAL NETWORK METHOD
+    Config.Regression.ML.HiddenLayerSize    =   0;          % Number of neurons in the hidden layer
+                                                            % If 0 --> same size as input layer
+    Config.Regression.ML.Deg                =   2;          % Degree of the hypothesis equation
+    Config.Regression.ML.ActivationFun      =   'ReLU';     % Activation function for the neurons in the
+                                                            % hidden layer (for output layer it is linear)
+                                                            % Possible options:
+                                                            % - 'ReLU'
+                                                            % - 'Sigmoid'
     
     %% OUTPUT CONFIGURATIONS
     % CDF config
@@ -50,11 +59,11 @@ function [Config] = getConfig()
     
     
     %% ERROR CONTROL
-    if Config.Regression.Method == 1
-        nVarsMean   =   length(indepnames(fittype(Config.Regression.Matlab_CF.Mean.Model)));
-        nVarsVar   =   length(indepnames(fittype(Config.Regression.Matlab_CF.Var.Model)));
-        if Config.Data.N_Vars ~= nVarsMean || Config.Data.N_Vars ~= nVarsVar
-            error('Please, choose a model with %d variables.', Config.Data.N_Vars);
-        end 
-    end
+%     if Config.Regression.Method == 1
+%         nVarsMean   =   length(indepnames(fittype(Config.Regression.Matlab_CF.Mean.Model)));
+%         nVarsVar   =   length(indepnames(fittype(Config.Regression.Matlab_CF.Var.Model)));
+%         if Config.Data.N_Vars ~= nVarsMean || Config.Data.N_Vars ~= nVarsVar
+%             error('Please, choose a model with %d variables.', Config.Data.N_Vars);
+%         end 
+%     end
 end

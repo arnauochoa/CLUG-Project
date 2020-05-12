@@ -1,9 +1,16 @@
-function Data = removeOutliers(Data, Config)
+function Data = removeOutliers(Data)
 
-    keepPoints  =   bitand( Data.Y < Config.Data.Y_Upper_Threshold,     ...
-                            Data.Y > Config.Data.Y_Lower_Threshold      ...
-                            );
+
+    initialSize         =   length(Data.Y);
     
-    Data.X      =   Data.X(keepPoints, :);
-    Data.Y      =   Data.Y(keepPoints);
+    % Find and remove oultiers in Y
+    [Data.Y, rmInd]     =   rmoutliers(Data.Y, 'quartiles');
+    % Remove outliers in X
+    Data.X(rmInd, :)    =   [];
+    
+    finalSize           =   length(Data.Y);
+    
+    removedPercentage   =   100-(100*finalSize/initialSize);
+    
+    fprintf('%0.2f %% of data was considered outlier and was removed.\n', removedPercentage);
 end
