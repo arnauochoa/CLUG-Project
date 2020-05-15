@@ -14,7 +14,7 @@ function [Result] = regression(Data, Config)
     Result = struct;
     
     % TODO: remove this, reduced data for test purposes >>>>>>>
-    nData   = 1e3;
+    nData   = 5e4;
     Data.X  = Data.X(1:nData, :);
     Data.Y  = Data.Y(1:nData);
     % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

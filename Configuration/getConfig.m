@@ -19,6 +19,7 @@ function [Config] = getConfig()
     Config.Data.Type                                =   2;  % 1: generated data
                                                     % 2: real data
     Config.Data.N_Vars                              =   2;  % For N = 2 --> poly22
+    Config.Data.FileName                            =   'Data/preparedData_thres.mat';
 
     % Data options:
     % Elevation, PR error, CN0

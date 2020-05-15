@@ -52,5 +52,5 @@ function prepareData()
     Data.X_Test =   DataTmp.X(indices(fix(0.6*nExamp)+fix(0.2*nExamp)+1:end), :);
     Data.Y_Test =   DataTmp.Y(indices(fix(0.6*nExamp)+fix(0.2*nExamp)+1:end));
     
-    save('Data/preparedData', 'Data');
+    save('Data/preparedData_thres', 'Data');
 end

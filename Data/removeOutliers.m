@@ -3,10 +3,24 @@ function Data = removeOutliers(Data)
 
     initialSize         =   length(Data.Y);
     
-    % Find and remove oultiers in Y
-    [Data.Y, rmInd]     =   rmoutliers(Data.Y, 'quartiles');
-    % Remove outliers in X
-    Data.X(rmInd, :)    =   [];
+    method = 1;
+    
+    upperThres = 300;
+    lowerThres = -100;
+    
+    switch method
+        case 1 % IQR
+            % Find and remove oultiers in Y
+            [Data.Y, rmInd]     =   rmoutliers(Data.Y, 'quartiles');
+            % Remove outliers in X
+            Data.X(rmInd, :)    =   [];
+        case 2 % Thresholds
+            keepPoints  =   bitand( Data.Y < upperThres,     ...
+                                    Data.Y > lowerThres     ...
+                                    );
+            Data.X      =   Data.X(keepPoints, :);
+            Data.Y      =   Data.Y(keepPoints);
+    end
     
     finalSize           =   length(Data.Y);
     
