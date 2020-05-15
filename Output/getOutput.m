@@ -38,7 +38,8 @@ function getOutput(Data, Config, Result)
                     fprintf(' >> Mean RMSE Weighted: %0.4f\n', Result.MeanRMSEW);
                     fprintf(' >> STD RMSE: %0.4f\n', Result.StdRMSE);
                     fprintf(' >> STD RMSE Weighted: %0.4f\n', Result.StdRMSEW);
-                    fprintf('---- Prediction RMSE: %0.4f ----\n', Result.PredRMSE);
+                    fprintf('---- Prediction RMSE : %0.4f ----\n', Result.PredRMSE);
+                    fprintf('---- Prediction RMSE W: %0.4f ----\n', Result.PredRMSEW);
 
                     switch Config.Data.N_Vars
                         case 1

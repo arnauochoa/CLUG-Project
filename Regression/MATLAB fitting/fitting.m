@@ -42,6 +42,9 @@ function [Result] = fitting(Data, Config)
         stdRegW             =   Result.CoeffStdW(Data.X);
         Result.StdRMSEW     =   1/N * ((stdRegW - Result.AbsErr)' * (stdRegW - Result.AbsErr));
         
-        prediction          =   Result.CoeffMeanW(Data.X_Test);
+        prediction          =   Result.CoeffMean(Data.X_Test);
         Result.PredRMSE     =   sqrt(mean((Data.Y_Test-prediction).^2));
+        
+        predictionW         =   Result.CoeffMeanW(Data.X_Test);
+        Result.PredRMSEW    =   sqrt(mean((Data.Y_Test-predictionW).^2));
 end

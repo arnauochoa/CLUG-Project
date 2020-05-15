@@ -20,7 +20,7 @@ function [Data] = readData(Config)
         case 2
             % Only load data if it is not already loaded.
             if ~exist('Data','var')
-                load('Data/preparedData.mat', 'Data');
+                load(Config.Data.FileName, 'Data');
             end
     end
 end
