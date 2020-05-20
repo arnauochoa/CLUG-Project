@@ -1,4 +1,4 @@
-function [Theta1, Theta2, cost] = trainNN(hlSize, X, y, lambda, actFunType, initialParams)
+function [Theta1, Theta2, cost] = trainNN(hlSize, X, y, lambda, Config, initialParams)
 
     [nExamp, nFeat] = size(X);
     
@@ -8,9 +8,9 @@ function [Theta1, Theta2, cost] = trainNN(hlSize, X, y, lambda, actFunType, init
                                             X,                  ...
                                             y,                  ...
                                             lambda,             ...
-                                            actFunType);
+                                            Config.Regression.ML.ActivationFun);
 
-    options = optimset('MaxIter', 100);
+    options = optimset('MaxIter', Config.Regression.ML.MaxIter);
 
     % Minimization
     fprintf('Training started\n');
