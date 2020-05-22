@@ -22,11 +22,11 @@ function [Config] = getConfig()
     [col, colnames] = col_feat();
     
     % Features to keep from Data.X structure
-    Config.Data.ColIndices  =   [   col.s,          ...
-                                    col.el,         ...
-                                    col.daz,        ...
-                                    col.maxtopor,   ...
-                                    col.maxtopor];
+    Config.Data.ColIndices  =   [   col.s,          ...     % SNR
+                                    col.el,         ...     % Elevation
+                                    col.daz,        ...     % Relative azimuth
+                                    col.maxtopor,   ...     % Maximum topo right
+                                    col.maxtopol];          % Maximum topo left
     
     Config.Data.Type        =   2;  % Do not change
     Config.Data.N_Feat      =   length(Config.Data.ColIndices);
@@ -47,7 +47,10 @@ function [Config] = getConfig()
 %     Config.Data.Y                                   =   'PR error';
     
     %% REGRESSION METHOD
-    Config.Regression.Method                        =   3;  % TODO
+    % 1 - MATLAB fitting (only 2 features)
+    % 2 - Gradient descent
+    % 3 - Neural Network
+    Config.Regression.Method                        =   3;
     
     %% MATLAB FITTING
     Config.Regression.Matlab_CF.Mean.Model          =   'poly22';    % poly2, exp1, poly22
