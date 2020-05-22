@@ -22,5 +22,12 @@ function [Data] = readData(Config)
             if ~exist('Data','var')
                 load(Config.Data.FileName, 'Data');
             end
+            
+            % Keep selected columns of X
+            if isfield(Config.Data, 'ColIndices')
+                Data.X      =   Data.X(:, Config.Data.ColIndices);
+                Data.X_Val  =   Data.X_Val(:, Config.Data.ColIndices);
+                Data.X_Test =   Data.X_Test(:, Config.Data.ColIndices);
+            end
     end
 end

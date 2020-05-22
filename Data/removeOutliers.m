@@ -3,7 +3,7 @@ function Data = removeOutliers(Data)
 
     initialSize         =   length(Data.Y);
     
-    method = 1;
+    method = 2;
     
     upperThres = 300;
     lowerThres = -100;

@@ -1,4 +1,4 @@
-function [lambda] = learningCurve(XTrain, yTrain, XVal, yVal, actFunType, hlSize, initialParams)
+function [lambda] = learningCurve(XTrain, yTrain, XVal, yVal, Config, hlSize, initialParams)
 
 
 
@@ -16,10 +16,10 @@ parfor i = 1:length(lambdaVals)
                                     XTrain,             ...
                                     yTrain,             ...
                                     lambdaVals(i),      ...
-                                    actFunType,         ...
+                                    Config,             ...
                                     initialParams);
     
-    predictions     =   nnPredict(Theta1, Theta2, XVal, actFunType);
+    predictions     =   nnPredict(Theta1, Theta2, XVal, Config.Regression.ML.ActivationFun);
     MSELambda(i)          =   mean((predictions - yVal).^2);
 end
 
@@ -44,15 +44,15 @@ parfor i = 1:length(sizes)
                                     XTrain(1:m, :),     ...
                                     yTrain(1:m),        ...
                                     lambda,             ...
-                                    actFunType,         ...
+                                    Config,             ...
                                     initialParams);
     
     % Error in training examples
-    predictions     =   nnPredict(Theta1, Theta2, XTrain(1:m, :), actFunType);
+    predictions     =   nnPredict(Theta1, Theta2, XTrain(1:m, :), Config.Regression.ML.ActivationFun);
     MSETrain(i)     =   mean((predictions - yTrain(1:m)).^2);
     
     % Error in cross-validation examples
-    predictions     =   nnPredict(Theta1, Theta2, XVal, actFunType);
+    predictions     =   nnPredict(Theta1, Theta2, XVal, Config.Regression.ML.ActivationFun);
     MSEVal(i)       =   mean((predictions - yVal).^2);
 end
 figure;

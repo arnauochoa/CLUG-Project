@@ -31,5 +31,5 @@ function [theta, mu, sigma, J_history, error, data_norm] = gradientDescent(X, y,
     end
     
     error = (X_norm * theta - y);
-    data_norm = [X_norm(:, 2) X_norm(:, 3)];
+    data_norm = X_norm(:, 2:Config.Data.N_Feat+1);
 end

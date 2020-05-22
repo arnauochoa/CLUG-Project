@@ -7,17 +7,11 @@ function [Result] = regression(Data, Config)
 %           CONFIG:     Struct. Configuration parameters
 %
 % OUTPUT
-%           result:     ....    
+%           Result:     ....    
 %
 % ----------------------------------------------------------------------------------------
     
     Result = struct;
-    
-    % TODO: remove this, reduced data for test purposes >>>>>>>
-    nData   = 5e4;
-    Data.X  = Data.X(1:nData, :);
-    Data.Y  = Data.Y(1:nData);
-    % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     switch Config.Regression.Method
         case 1 % MATLAB curve fitting function

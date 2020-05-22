@@ -15,21 +15,42 @@ function [Config] = getConfig()
     %   2: Custom classical regression model
     %   3: Machine learning
     
-    %% DATA
-    Config.Data.Type                                =   2;  % 1: generated data
-                                                    % 2: real data
-    Config.Data.N_Vars                              =   2;  % For N = 2 --> poly22
-    Config.Data.FileName                            =   'Data/preparedData_thres.mat';
-
-    % Data options:
-    % Elevation, PR error, CN0
-    % IMPORTANT: make coincide with config in 'prepareData.m'
-    Config.Data.X{1}                                =   'CN0';
-    Config.Data.X{2}                                =   'Elevation';
-    Config.Data.Y                                   =   'PR error';
+    %% CHOOSE DATA FILE HERE
+    Config.Data.FileName                =   'Data/preparedData_MPN.mat';
+    
+    %% DATA (MPN data)
+    [col, colnames] = col_feat();
+    
+    % Features to keep from Data.X structure
+    Config.Data.ColIndices  =   [   col.s,          ...     % SNR
+                                    col.el,         ...     % Elevation
+                                    col.daz,        ...     % Relative azimuth
+                                    col.maxtopor,   ...     % Maximum topo right
+                                    col.maxtopol];          % Maximum topo left
+    
+    Config.Data.Type        =   2;  % Do not change
+    Config.Data.N_Feat      =   length(Config.Data.ColIndices);
+    
+    % Names of features for plots
+    Config.Data.X           =   colnames;
+    Config.Data.Y           =   'MP Error';
+    
+    %% DATA (PRE data)
+%     Config.Data.Type                                =   2;  % 1: generated data
+%                                                     % 2: real data
+%     Config.Data.N_Feat                              =   2;  % For N = 2 --> poly22
+%     % Data options:
+%     % Elevation, PR error, CN0
+%     % IMPORTANT: make coincide with config in 'prepareData.m'
+%     Config.Data.X{1}                                =   'CN0';
+%     Config.Data.X{2}                                =   'Elevation';
+%     Config.Data.Y                                   =   'PR error';
     
     %% REGRESSION METHOD
-    Config.Regression.Method                        =   3;  % TODO
+    % 1 - MATLAB fitting (only 2 features)
+    % 2 - Gradient descent
+    % 3 - Neural Network
+    Config.Regression.Method                        =   3;
     
     %% MATLAB FITTING
     Config.Regression.Matlab_CF.Mean.Model          =   'poly22';    % poly2, exp1, poly22
@@ -51,6 +72,7 @@ function [Config] = getConfig()
                                                             % Possible options:
                                                             % - 'ReLU'
                                                             % - 'Sigmoid'
+    Config.Regression.ML.MaxIter            =   200;
     
     %% OUTPUT CONFIGURATIONS
     % CDF config
