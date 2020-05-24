@@ -29,6 +29,15 @@ else
     hlSize = Config.Regression.ML.HiddenLayerSize;
 end
 
+% hlSize = zeros(1, length(Config.Regression.ML.HiddenLayerSize));
+% for layerInd = Config.Regression.ML.HiddenLayerSize
+%     if layerInd == Config.Regression.ML.HiddenLayerSize(layerInd)
+%         hlSize(layerInd) = nFeat; 
+%     else
+%         hlSize(layerInd) = Config.Regression.ML.HiddenLayerSize;
+%     end
+% end
+
 
 %% Initialize parameters
 initialTheta1 = randInitializeWeights(nFeat, hlSize);

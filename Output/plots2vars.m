@@ -80,4 +80,25 @@ function plots2vars(Data, Config, Result)
     j.Label.FontSize = 14;
     set(get(j,'label'),'string', '$\hat{\sigma} (m)$');
     title('Fitting of the \sigma (Weighted)');
+    
+    %% CDF
+    mu      =   mean(Result.PredError); 
+    sigma   =   std(Result.PredError);
+    pd      =   makedist('Normal', 'mu', mu, 'sigma', sigma);
+    figure;
+    probplot(Result.PredError, 'noref');
+    probplot(gca, pd);
+    grid on;
+    xlabel('Test prediction error'); ylabel('Probability');
+    title(sprintf('Normal Probability Plot for LS. \\mu = %0.2f, \\sigma = %0.2f', mu, sigma));
+    
+    mu      =   mean(Result.PredErrorW); 
+    sigma   =   std(Result.PredErrorW);
+    pd      =   makedist('Normal', 'mu', mu, 'sigma', sigma);
+    figure;
+    probplot(Result.PredErrorW, 'noref');
+    probplot(gca, pd);
+    grid on;
+    xlabel('Test prediction error'); ylabel('Probability');
+    title(sprintf('Normal Probability Plot for WLS. \\mu = %0.2f, \\sigma = %0.2f', mu, sigma));
 end

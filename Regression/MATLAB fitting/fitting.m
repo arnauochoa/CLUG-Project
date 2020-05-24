@@ -47,5 +47,7 @@ function [Result] = fitting(Data, Config)
         Result.PredRMSE     =   sqrt(mean((Data.Y_Test-prediction).^2));
         
         predictionW         =   Result.CoeffMeanW(Data.X_Test);
+        Result.PredError    =   Data.Y_Test - prediction;
+        Result.PredErrorW   =   Data.Y_Test - predictionW;
         Result.PredRMSEW    =   sqrt(mean((Data.Y_Test-predictionW).^2));
 end

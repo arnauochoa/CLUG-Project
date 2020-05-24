@@ -37,8 +37,8 @@ function plotsGD(Data, Config, Result)
         fcontour(Result.GD_Fit.Fmean, 'Fill', 'on');
         xlim([min(Data.X(:, 1)) max(Data.X(:, 1))]);
         ylim([min(Data.X(:, 2)) max(Data.X(:, 2))]);
-        xlabel(strcat(Config.Data.X{1}, ' normalized')); 
-        ylabel(strcat(Config.Data.X{2}, ' normalized'));
+        xlabel(strcat(Config.Data.X{1})); 
+        ylabel(strcat(Config.Data.X{2}));
         h = colorbar;
         h.Label.Interpreter = 'latex';
         h.Label.FontSize = 14;
@@ -48,8 +48,8 @@ function plotsGD(Data, Config, Result)
         fcontour(Result.GD_Fit.Fstd, 'Fill', 'on');
         xlim([min(Data.X(:, 1)) max(Data.X(:, 1))]);
         ylim([min(Data.X(:, 2)) max(Data.X(:, 2))]);
-        xlabel(strcat(Config.Data.X{1}, ' normalized')); 
-        ylabel(strcat(Config.Data.X{2}, ' normalized'));
+        xlabel(strcat(Config.Data.X{1})); 
+        ylabel(strcat(Config.Data.X{2}));
         h = colorbar;
         h.Label.Interpreter = 'latex';
         h.Label.FontSize = 14;

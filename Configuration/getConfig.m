@@ -16,42 +16,42 @@ function [Config] = getConfig()
     %   3: Machine learning
     
     %% CHOOSE DATA FILE HERE
-    Config.Data.FileName                =   'Data/preparedData_MPN.mat';
+    Config.Data.FileName                =   'Data/preparedData_thres.mat';
     
     %% DATA (MPN data)
-    [col, colnames] = col_feat();
-    
-    % Features to keep from Data.X structure
+%     [col, colnames] = col_feat();
+%     
+%     Features to keep from Data.X structure
 %     Config.Data.ColIndices  =   [col.daz, col.maxtopor];
-    Config.Data.ColIndices  =   [   col.s,          ...     % SNR
-                                    col.el,         ...     % Elevation
-                                    col.daz,        ...     % Relative azimuth
-                                    col.maxtopor,   ...     % Maximum topo right
-                                    col.maxtopol];          % Maximum topo left
-    
-    Config.Data.Type        =   2;  % Do not change
-    Config.Data.N_Feat      =   length(Config.Data.ColIndices);
-    
-    % Names of features for plots
-    Config.Data.X           =   colnames(Config.Data.ColIndices);
-    Config.Data.Y           =   'MP Error';
+%     Config.Data.ColIndices  =   [   col.s,          ...     % SNR
+%                                     col.el,         ...     % Elevation
+%                                     col.daz,        ...     % Relative azimuth
+%                                     col.maxtopor,   ...     % Maximum topo right
+%                                     col.maxtopol];          % Maximum topo left
+%     
+%     Config.Data.Type        =   2;  % Do not change
+%     Config.Data.N_Feat      =   length(Config.Data.ColIndices);
+%     
+%     Names of features for plots
+%     Config.Data.X           =   colnames(Config.Data.ColIndices);
+%     Config.Data.Y           =   'MP Error';
     
     %% DATA (PRE data)
-%     Config.Data.Type                                =   2;  % 1: generated data
-%                                                     % 2: real data
-%     Config.Data.N_Feat                              =   2;  % For N = 2 --> poly22
-%     % Data options:
-%     % Elevation, PR error, CN0
-%     % IMPORTANT: make coincide with config in 'prepareData.m'
-%     Config.Data.X{1}                                =   'CN0';
-%     Config.Data.X{2}                                =   'Elevation';
-%     Config.Data.Y                                   =   'PR error';
+    Config.Data.Type                                =   2;  % 1: generated data
+                                                    % 2: real data
+    Config.Data.N_Feat                              =   2;  % For N = 2 --> poly22
+    % Data options:
+    % Elevation, PR error, CN0
+    % IMPORTANT: make coincide with config in 'prepareData.m'
+    Config.Data.X{1}                                =   'CN0 (dB-Hz)';
+    Config.Data.X{2}                                =   'Elevation (deg)';
+    Config.Data.Y                                   =   'PR error';
     
     %% REGRESSION METHOD
     % 1 - MATLAB fitting (only 2 features)
     % 2 - Gradient descent
     % 3 - Neural Network
-    Config.Regression.Method                        =   3;
+    Config.Regression.Method                        =   2;
     
     %% MATLAB FITTING
     Config.Regression.Matlab_CF.Mean.Model          =   'poly22';    % poly2, exp1, poly22
@@ -65,7 +65,7 @@ function [Config] = getConfig()
     Config.Regression.GradDes.Alpha         =   0.1;
     
     %% NEURAL NETWORK METHOD
-    Config.Regression.ML.HiddenLayerSize    =   0;          % Number of neurons in the hidden layer
+    Config.Regression.ML.HiddenLayerSize    =   0;        % Number of neurons in the hidden layer
                                                             % If 0 --> same size as input layer
     Config.Regression.ML.Deg                =   2;          % Degree of the hypothesis equation
     Config.Regression.ML.ActivationFun      =   'ReLU';     % Activation function for the neurons in the
