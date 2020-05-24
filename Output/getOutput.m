@@ -41,7 +41,7 @@ function getOutput(Data, Config, Result)
                     fprintf('---- Prediction RMSE : %0.4f ----\n', Result.PredRMSE);
                     fprintf('---- Prediction RMSE W: %0.4f ----\n', Result.PredRMSEW);
 
-                    switch Config.Data.N_Vars
+                    switch Config.Data.N_Feat
                         case 1
                             plots1var(Data, Config, Result);
                         case 2
@@ -50,5 +50,7 @@ function getOutput(Data, Config, Result)
             end
         case 2 % Gradient descent fitting
             plotsGD(Data, Config, Result)
+        case 3 % Neural Network
+            plotsNN(Data, Config, Result)
     end     
 end

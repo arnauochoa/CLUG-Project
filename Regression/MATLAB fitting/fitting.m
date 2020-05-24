@@ -33,14 +33,15 @@ function [Result] = fitting(Data, Config)
                             MeanOptions);
 
         meanRegW            =   Result.CoeffMeanW(Data.X);
-        Result.MeanRMSEW    =   1/N * ((meanRegW - Data.Y)' * (meanRegW - Data.Y));
+        Result.MeanRMSEW    =   sqrt(mean((meanRegW - Data.Y).^2));
         Result.AbsErrW      =   abs(Data.Y - meanRegW);
+        
         Result.CoeffStdW    =   fit(Data.X, Result.AbsErrW,                     ...
                             Config.Regression.Matlab_CF.Var.Model,              ...
                             VarOptions);        
         
         stdRegW             =   Result.CoeffStdW(Data.X);
-        Result.StdRMSEW     =   1/N * ((stdRegW - Result.AbsErr)' * (stdRegW - Result.AbsErr));
+        Result.StdRMSEW     =   sqrt(mean((stdRegW - Result.AbsErr).^2));
         
         prediction          =   Result.CoeffMean(Data.X_Test);
         Result.PredRMSE     =   sqrt(mean((Data.Y_Test-prediction).^2));

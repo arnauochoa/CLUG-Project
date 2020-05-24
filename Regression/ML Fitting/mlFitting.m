@@ -78,7 +78,6 @@ predictions     =   nnPredict(  Result.Theta1,  ...
                                 Result.Theta2,  ...
                                 X_test_norm,    ...
                                 Config.Regression.ML.ActivationFun);
-Result.MLFit.PredRMSE =   sqrt(mean((predictions - Data.Y_Test).^2));
-
-fprintf('---- Prediction RMSE: %0.4f ----\n', Result.MLFit.PredRMSE);
+Result.MLFit.PredError =   Data.Y_Test - predictions;
+Result.MLFit.PredRMSE =   sqrt(mean((Data.Y_Test - predictions).^2));
 end
