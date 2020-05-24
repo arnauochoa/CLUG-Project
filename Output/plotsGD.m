@@ -19,7 +19,19 @@ function plotsGD(Data, Config, Result)
     plot(Result.GD_Fit.CostFunStd);
     xlabel('Iteration'); ylabel('Cost function J(\theta)');
     title('Standard deviation estimation');
+    
+    %% CDF
+    mu      =   mean(Result.GD_Fit.PredError); 
+    sigma   =   std(Result.GD_Fit.PredError);
+    pd      =   makedist('Normal', 'mu', mu, 'sigma', sigma);
+    figure;
+    probplot(Result.GD_Fit.PredError, 'noref');
+    probplot(gca, pd);
+    grid on;
+    xlabel('Test prediction error'); ylabel('Probability');
+    title(sprintf('Normal Probability Plot. \\mu = %0.2f, \\sigma = %0.2f', mu, sigma));
 
+    %% Surface
     if Config.Data.N_Feat == 2
         figure;
         fcontour(Result.GD_Fit.Fmean, 'Fill', 'on');

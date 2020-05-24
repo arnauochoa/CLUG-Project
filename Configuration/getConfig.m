@@ -22,6 +22,7 @@ function [Config] = getConfig()
     [col, colnames] = col_feat();
     
     % Features to keep from Data.X structure
+%     Config.Data.ColIndices  =   [col.daz, col.maxtopor];
     Config.Data.ColIndices  =   [   col.s,          ...     % SNR
                                     col.el,         ...     % Elevation
                                     col.daz,        ...     % Relative azimuth
@@ -32,7 +33,7 @@ function [Config] = getConfig()
     Config.Data.N_Feat      =   length(Config.Data.ColIndices);
     
     % Names of features for plots
-    Config.Data.X           =   colnames;
+    Config.Data.X           =   colnames(Config.Data.ColIndices);
     Config.Data.Y           =   'MP Error';
     
     %% DATA (PRE data)

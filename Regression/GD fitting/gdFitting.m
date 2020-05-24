@@ -56,6 +56,7 @@ function [Result] = gdFitting(Data, Config)
     XTestEval   =   [ones(nTest, 1), XTestEval];
     % Evaluate test data and find RMSE
     prediction              =   XTestEval * Result.GD_Fit.ThetaMean;
+    Result.GD_Fit.PredError =   Data.Y_Test - prediction;
     Result.GD_Fit.PredRMSE  =   sqrt(mean((Data.Y_Test - prediction).^2));
     
 end
