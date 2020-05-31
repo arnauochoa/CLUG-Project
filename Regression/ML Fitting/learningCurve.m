@@ -1,8 +1,20 @@
 function [lambda] = learningCurve(XTrain, yTrain, XVal, yVal, Config, hlSize, initialParams)
+% ----------------------------------------------------------------------------------------
+% This function finds the best lambda (regularization parameter) for the 
+% model and checks if there exists overfitting or underfittig.
+%
+% INPUT
+%        XTrain:      Matrix [nExamp x nFeat]. Training dataset of features
+%        yTrain:      Vector [nExamp x 1]. Training dataset of MP error
+%          XVal:      Matrix [nExampVal x nFeat]. Validation dataset of features
+%          yVal:      Vector [nExampVal x 1]. Validation dataset of MP error
+%        Config:      Struct. Configuration parameters
+%        hlSize:      Scalar [1x1]. Hidden layer size
+% initialParams:      Matrix [outSizex(inSize+1)]. Weights assigned to input values. 
+% OUTPUT
+%        lambda:      Scalar [1x1]. Regularization parameter
 
-
-
-
+% ---------------------------------------------------------------------------------------
 %% Initializations
 [nExamp, nFeat] = size(XTrain);
 lambdaVals      = [0.01 0.03 0.1 0.3 1 3 10 30]; % Values of lambda to test

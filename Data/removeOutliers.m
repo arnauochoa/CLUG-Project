@@ -1,5 +1,15 @@
 function Data = removeOutliers(Data)
-
+% ----------------------------------------------------------------------------------------
+% This function reads the original data from stuct, removes outliers and
+% returns remaining data.
+%
+% INPUT
+%           Data:       Struct. Original data
+%
+% OUTPUT
+%           Data:       Struct. Data without outliers
+%
+% ----------------------------------------------------------------------------------------
 
     initialSize         =   length(Data.Y);
     

@@ -1,4 +1,13 @@
 function plotsGD(Data, Config, Result)
+% This function displays the results computed and plots corresponding to 
+% Gradient Descent Regression: Pseudorange or Multipath error estimation.
+%
+% INPUT
+%           Data:       Struct. Prepared data
+%           Config:     Struct. Configuration parameters
+%           Result:     Struct. Results obtained from regression   
+%           
+% ----------------------------------------------------------------------------------------
 
 
     disp('========== Fitting results: ==========');
@@ -31,7 +40,8 @@ function plotsGD(Data, Config, Result)
     title(sprintf('Normal Probability Plot. \\mu = %0.2f, \\sigma = %0.2f', mu, sigma));
 
     %% Surface
-    if Config.Data.N_Feat == 2
+    % Only for Pseudorange error vs CN0 & Elevation
+    if Config.Data.N_Feat == 2 
         figure;
         fcontour(Result.GD_Fit.Fmean, 'Fill', 'on');
         xlim([min(Data.X(:, 1)) max(Data.X(:, 1))]);

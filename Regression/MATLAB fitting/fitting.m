@@ -1,4 +1,15 @@
 function [Result] = fitting(Data, Config)
+% ----------------------------------------------------------------------------------------
+% This function returns the results computed corresponding to 
+% Classical Regression (LS & WLS): Pseudorange error estimation.
+%
+% INPUT
+%           Data:       Struct. Prepared data
+%           Config:     Struct. Configuration parameters
+% OUTPUT
+%           Result:     Struct. Results obtained from regression   
+%           
+% ----------------------------------------------------------------------------------------
         N   =   length(Data.Y);
 
         [MeanOptions, VarOptions]     =   fgetFitOptions(Config);

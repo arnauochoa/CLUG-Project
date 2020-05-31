@@ -1,10 +1,11 @@
 function getOutput(Data, Config, Result)
-% This function applies the regression technique selected in configuration
+% This function returns the results computed and plots corresponding to the 
+% regression technique selected in configuration.
 %
 % INPUT
-%           Data:       Struct. Input data
-%           CONFIG:     Struct. Configuration parameters
-%           result:     ....   
+%           Data:       Struct. Prepared data
+%           Config:     Struct. Configuration parameters
+%           Result:     Struct. Results obtained from regression   
 %           
 % ----------------------------------------------------------------------------------------
     set(0, 'DefaultLineLineWidth', 1.5);

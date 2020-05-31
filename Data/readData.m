@@ -1,12 +1,12 @@
 function [Data] = readData(Config)
 % ----------------------------------------------------------------------------------------
-% This function reads the data from data mat file
+% This function reads the data from data mat file.
 %
 % INPUT
-%           filename:   String. Name of the file
+%           Config:     Struct. Configuration parameters
 %
 % OUTPUT
-%           DATA:       Struct. Original data
+%           Data:       Struct. Original data
 %
 % ----------------------------------------------------------------------------------------
     switch Config.Data.Type

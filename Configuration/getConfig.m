@@ -4,7 +4,7 @@ function [Config] = getConfig()
 % structure.
 %
 % OUTPUT
-%           CONFIG:     Configuration structure
+%           CONFIG:     Struct. Configuration parameters
 %
 % ----------------------------------------------------------------------------------------
 

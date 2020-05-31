@@ -1,4 +1,16 @@
 function Xres = mapFeatures(X, degree)
+% ----------------------------------------------------------------------------------------
+% This function returns a matrix containing all the terms composing the
+% polynomial model defined by the number of features and the degree of the
+% polynomial. 
+%
+% INPUT
+%           X:      Matrix [mxn]. Prepared data, features
+%      degree:      Scalar [1x1]. Degree of the polynomial, set in config
+% OUTPUT
+%        Xres:      Matrix. Contains every term of the polynomial model   
+
+% ----------------------------------------------------------------------------------------
 
     % Initializations
     [m, n]      =   size(X);

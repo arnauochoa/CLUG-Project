@@ -7,6 +7,12 @@ function checkGradients(n, hiddenLayerSize, lambda)
 %   using computeNumericalGradient). These two gradient computations should
 %   result in very similar values.
 %
+% INPUT
+%                n:     Scalar [1x1]. Number of features
+%  hiddenLayerSize:     Scalar [1x1]. Size of the hidden layer
+%           lambda:     Scalar [1x1]. Regularization parameter
+
+% ----------------------------------------------------------------------------------------
 
 if ~exist('lambda', 'var') || isempty(lambda)
     lambda = 0;

@@ -1,15 +1,21 @@
 function [theta, mu, sigma, J_history, error, data_norm] = gradientDescent(X, y, Config)
 % ----------------------------------------------------------------------------------------
-% This function applies the gradient descent
+% This function applies the gradient descent regression.
 %
 % INPUT
-%           DATA:       Struct. Input data
-%           CONFIG:     Struct. Configuration parameters
-%
+%           X:      Matrix [mxn]. Prepared data, features
+%           y:      Vector [mx1]. Prepared data, observed PR/MP error
+%      Config:      Struct. Configuration parameters
 % OUTPUT
-%           result:     ....    
-%
+%       theta:      Vector [nx1]. Polynomial model coefficients   
+%          mu:      Scalar [1x1]. Mean's feature
+%       sigma:      Scalar [1x1]. STD's feature   
+%   J_history:      Vector [1xiter]. Cost function evolution 
+%       error:      Vector [mx1]. PR/MP error estimation   
+%   data_norm:      Matrix [mx(n-1)]. Normalized features data
+
 % ----------------------------------------------------------------------------------------
+
     % Initializations
     alpha       =   Config.Regression.GradDes.Alpha;
     m           =   size(X, 1); % num examples

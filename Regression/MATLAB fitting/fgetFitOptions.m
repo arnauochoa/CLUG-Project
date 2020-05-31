@@ -1,4 +1,14 @@
 function [MeanOptions, VarOptions]     =   fgetFitOptions(Config)
+% ----------------------------------------------------------------------------------------
+% This function sets prior fitting options required for the classical regression.
+%
+% INPUT
+%        Config:      Struct. Configuration parameters
+% OUTPUT
+%   MeanOptions:      fitoptions object. Contains starting point for mean estimation
+%    VarOptions:      fitoptions object. Contains starting point for STD estimation
+
+% ----------------------------------------------------------------------------------------
 
     MeanOptions     =    fitoptions(Config.Regression.Matlab_CF.Mean.Model);
     VarOptions      =    fitoptions(Config.Regression.Matlab_CF.Var.Model);

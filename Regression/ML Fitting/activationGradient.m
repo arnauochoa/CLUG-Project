@@ -1,5 +1,14 @@
 function gGrad = activationGradient(z, actFunType)
-
+% ----------------------------------------------------------------------------------------
+% This function computes the gradient of the activation function to input data.
+%
+% INPUT
+%                z:     Vector [nx1]. Weigthed inputs (theta^T)*x
+%       actFunType:     String. Type of activation function to be applied
+% OUTPUT
+%            gGrad:     Vector [nx1]. Output of the gradient of the activation function
+%           
+% ----------------------------------------------------------------------------------------
 
     % TODO: implement other activation functions (?)
     switch actFunType

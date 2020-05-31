@@ -1,5 +1,12 @@
 function prepareDataMPN()
-
+% ----------------------------------------------------------------------------------------
+% This function reads Multipath error and other input features data from an extenal
+% directory, removes outliers and invalid data and separates data. 
+%
+% OUTPUT
+%           preparedData_MPN:     Struct. Prepared data
+%
+% ----------------------------------------------------------------------------------------
     set(0, 'DefaultLineLineWidth', 2);
     %% Load file
     directory = 'Data/feat_saved.mat';

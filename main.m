@@ -1,5 +1,5 @@
 % ----------------------------------------------------------------------------------------
-% Main script that reads data, sets parameters and computes regression
+% Main script that reads data, sets parameters and computes regression.
 % ----------------------------------------------------------------------------------------
 close all; clc;
 clearvars -except Data;

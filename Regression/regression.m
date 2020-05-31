@@ -3,11 +3,11 @@ function [Result] = regression(Data, Config)
 % This function applies the regression technique selected in configuration
 %
 % INPUT
-%           DATA:       Struct. Input data
-%           CONFIG:     Struct. Configuration parameters
+%             Data:     Struct. Prepared data
+%           Config:     Struct. Configuration parameters
 %
 % OUTPUT
-%           Result:     ....    
+%           Result:     Struct. Results obtained from regression
 %
 % ----------------------------------------------------------------------------------------
     

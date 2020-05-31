@@ -1,4 +1,14 @@
 function plots1var(Data, Config, Result)
+% This function displays the results computed and plots corresponding to 
+% Univariate Classical Regresion: Pseudorange error vs CN0/Elevation.
+%
+% INPUT
+%           Data:       Struct. Prepared data
+%           Config:     Struct. Configuration parameters
+%           Result:     Struct. Results obtained from regression   
+%           
+% ----------------------------------------------------------------------------------------
+
     xVals = min(Data.X)-100:max(Data.X)+100;
     
     %% MEAN FITTING

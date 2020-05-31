@@ -1,9 +1,15 @@
 function [Result] = mlFitting(Data, Config)
-
-
-
-
-
+% ----------------------------------------------------------------------------------------
+% This function returns the results computed corresponding to 
+% Neural Network Regression: Multipath error estimation.
+%
+% INPUT
+%           Data:       Struct. Prepared data
+%           Config:     Struct. Configuration parameters
+% OUTPUT
+%           Result:     Struct. Results obtained from regression   
+%           
+% ----------------------------------------------------------------------------------------
 %% Prepare data
 % Normalize features
 [X_train_norm, muTrain, sigmaTrain] = featureNormalize(Data.X);

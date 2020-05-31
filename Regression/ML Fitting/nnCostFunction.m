@@ -1,5 +1,21 @@
 function [J, grad] = nnCostFunction(params, hiddenLayerSize, X, y, lambda, actFunType)
+% ----------------------------------------------------------------------------------------
+% This function computes the cost function and its gradient for the Neural Network
+% regression.
+%
+% INPUT
+%                params:      Function variable. Cost function as a function of theta parameters.
+%       hiddenLayerSize:      Scalar [1x1]. Hidden layer size
+%                     X:      Matrix [nExamp x nFeat]. Training dataset of features
+%                     y:      Vector [nExamp x 1]. Training dataset of MP error
+%                lambda:      Scalar [1x1]. Regularization paramete
+%            actFunType:      String. Type of activation function to be applied
+% OUTPUT
+%                     J:      Scalar [1x1]. Computed cost function as a
+%                             function of theta
+%                  grad:      Matrix. Gradient of cost function J
 
+% ---------------------------------------------------------------------------------------
 
     [nExamp, nFeat]  =   size(X);
     % Reshape nn_params back into the parameters Theta1 and Theta2, the weight matrices

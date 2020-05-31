@@ -1,5 +1,17 @@
 clear; close all; clc;
 %% RANDOM DATA GENERATOR
+% ----------------------------------------------------------------------------------------
+% This function generates random data: 
+%
+% OUTPUT
+%           testData:       Random data .mat, which contains:
+%
+%                  x:       CN0 values, from 0 to 60 dB-Hz     
+%                  y:       Pseudorange error observed data points  
+%           trueMean:       PR error true mean 
+%            trueVar:       PR error true variance
+% ----------------------------------------------------------------------------------------
+
 step        =   0.1;
 x           =   0:step:60;       % X Axis
 incThres    =   52;

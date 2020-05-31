@@ -1,4 +1,13 @@
 function plots2vars(Data, Config, Result)
+% This function displays the results computed and plots corresponding to 
+% Bivariate Classical Regresion: Pseudorange error vs CN0 & Elevation.
+%
+% INPUT
+%           Data:       Struct. Prepared data
+%           Config:     Struct. Configuration parameters
+%           Result:     Struct. Results obtained from regression   
+%           
+% ----------------------------------------------------------------------------------------
     
     N           =   length(Data.Y);
     [x1,x2]     =   meshgrid(min(Data.X(:,1)):max(Data.X(:,1)), ...

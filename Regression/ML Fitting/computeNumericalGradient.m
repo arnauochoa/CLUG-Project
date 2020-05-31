@@ -11,7 +11,13 @@ function numgrad = computeNumericalGradient(J, theta)
 %        i-th input argument, evaluated at theta. (i.e., numgrad(i) should 
 %        be the (approximately) the partial derivative of J with respect 
 %        to theta(i).)
-%                
+% INPUT
+%                J:     Cost function
+%            theta:     Vector [nFeatx1]. Theta parameters
+% OUTPUT
+%          numgrad:     Scalar [1x1]. Numerical gradient
+
+% ----------------------------------------------------------------------------------------               
 
 numgrad = zeros(size(theta));
 perturb = zeros(size(theta));
