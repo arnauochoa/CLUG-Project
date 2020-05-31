@@ -51,3 +51,4 @@ Then, run the function `main()`.
 
 * Some of the code that has been used is from the Machine Learning course in [Coursera](https://www.coursera.org/learn/machine-learning).
 * Also thank our supervisors, Carl Milner ([carlatenac](https://github.com/carlatenac)) and Heekwon No ([nonokwon](https://github.com/nonokwon)).
+* Matt Fig for the function [combinator](https://www.mathworks.com/matlabcentral/fileexchange/24325-combinator-combinations-and-permutations).
