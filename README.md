@@ -36,6 +36,8 @@ Choose the desired configuration in `Configuration/getConfig()`. Be sure to conf
 Config.Data.FileName = 'Data/<name_of_file>'
 ```
 
+Then, run the function `main()`.
+
 ## Built With
 
 * [MATLAB](https://www.mathworks.com/products/matlab.html)
@@ -48,4 +50,4 @@ Config.Data.FileName = 'Data/<name_of_file>'
 ## Acknowledgments
 
 * Some of the code that has been used is from the Machine Learning course in [Coursera](https://www.coursera.org/learn/machine-learning).
-* Also thank our supervisors Carl Milner ([carlatenac](https://github.com/carlatenac)) and Heekwon No ([nonokwon](https://github.com/nonokwon))
+* Also thank our supervisors, Carl Milner ([carlatenac](https://github.com/carlatenac)) and Heekwon No ([nonokwon](https://github.com/nonokwon)).
