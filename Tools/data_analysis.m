@@ -1,17 +1,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%   DATA ANALYSYS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-close all;
+% close all; clc;
+clearvars -except Data;
+addpath(genpath('./'));
 %% Configuration
 % CHOOSE DATA FILE HERE 'Data/preparedData_thres.mat'
-Config.Data.FileName                =   'Data/preparedData_MPN.mat';
-
+Config.Data.FileName                =   '../Data/preparedData_MPN.mat';
+Config.Data.Type    =   2; % DO NOT CHANGE
 % DATA (MPN data)
 [col, colnames] = col_feat();
 % Feature to keep from Data.X structure
-Config.Data.ColIndices  =   col.maxtopol; % For PRE data: 1: CN0, 2: Elevation
+Config.Data.ColIndices  =   col.maxtopor; % For PRE data: 1: CN0, 2: Elevation
                                % For MPN data: col.s, col.el, col.az, ...
-FigName   = 'mpn_maxtopol';
+FigName   = 'mpn_maxtopor';
 % Names of features for plots
 Config.Data.X           =   'MTHL';
 Config.Data.X_units     =   ' (m)';

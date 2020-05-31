@@ -1,4 +1,4 @@
-FolderName = '../Figures_auto/figs_gd_pre/';   % Your destination folder
+FolderName = '../Figures_auto/cdfs_univar/';   % Your destination folder
 if ~exist(FolderName, 'dir')
        mkdir(FolderName)
 end
@@ -7,5 +7,5 @@ for iFig = 1:length(FigList)
   FigHandle = FigList(iFig);
   FigName   = sprintf('Fig_%d', iFig);
   saveas(FigHandle, fullfile(FolderName, [FigName, '.png']));
-  saveas(FigHandle, fullfile(FolderName, [FigName, '.fig']));
+%   saveas(FigHandle, fullfile(FolderName, [FigName, '.fig']));
 end

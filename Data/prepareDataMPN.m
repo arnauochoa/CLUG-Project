@@ -1,5 +1,6 @@
 function prepareDataMPN()
-    
+
+    set(0, 'DefaultLineLineWidth', 2);
     %% Load file
     directory = 'Data/feat_saved.mat';
     load(directory, 'feat', 'colnames');

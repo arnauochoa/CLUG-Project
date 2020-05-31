@@ -23,8 +23,6 @@ function getOutput(Data, Config, Result)
                     figure;
                     plot(Data.X, Result.AbsErr, '.');                hold on;
                     xLimits = get(gca,'XLim');  %# Get the range of the x axis
-                    plot(xVals, Result.CoeffStd(xVals).^2, 'r');         hold on;
-                    plot(xVals, Result.CoeffStdW(xVals).^2, 'c');        hold on;
                     xlim(xLimits);
                     plot(Data.X, Data.Var, 'g')
                     legend('Squared error', 'STD fitting', 'Weighted STD fitting', 'True variance')
@@ -32,12 +30,8 @@ function getOutput(Data, Config, Result)
                     disp('========== Fitting results: ==========');
                     disp(' >> Mean:');
                     disp(Result.CoeffMeanW);
-                    disp(' >> STD:');
-                    disp(Result.CoeffStdW);
                     fprintf(' >> Mean RMSE: %0.4f\n', Result.MeanRMSE);
                     fprintf(' >> Mean RMSE Weighted: %0.4f\n', Result.MeanRMSEW);
-                    fprintf(' >> STD RMSE: %0.4f\n', Result.StdRMSE);
-                    fprintf(' >> STD RMSE Weighted: %0.4f\n', Result.StdRMSEW);
                     fprintf('---- Prediction RMSE : %0.4f ----\n', Result.PredRMSE);
                     fprintf('---- Prediction RMSE W: %0.4f ----\n', Result.PredRMSEW);
 

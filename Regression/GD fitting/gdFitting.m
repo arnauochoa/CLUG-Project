@@ -24,29 +24,26 @@ function [Result] = gdFitting(Data, Config)
     Xmap        =   mapFeatures(Result.GD_Fit.X_norm, Config.Regression.GradDes.Deg);
     Xmap        =   [ones(nExamp, 1) Xmap];
     evalFMean   =   Xmap * Result.GD_Fit.ThetaMean;
-    Result.GD_Fit.MeanRMSE   =   1/nExamp * ((evalFMean - Data.Y)' * (evalFMean - Data.Y));
+    Result.GD_Fit.MeanRMSE   =   sqrt(mean((evalFMean - Data.Y).^2));
     
     %% Obtain fitting for the standard deviation
-    [Result.GD_Fit.ThetaStd    , ...
-     Result.GD_Fit.MuStd       , ...
-     Result.GD_Fit.SigmaStd    , ...
-     Result.GD_Fit.CostFunStd,   ...
-     Result.GD_Fit.ErrorStd    , ...
-     ~]   = gradientDescent(Data.X, abs(Result.GD_Fit.ErrorMean), Config);
+    [Result.GD_Fit.ThetaVar    , ...
+     Result.GD_Fit.MuVar       , ...
+     Result.GD_Fit.SigmaVar    , ...
+     Result.GD_Fit.CostFunVar  , ...
+     Result.GD_Fit.ErrorVar    , ...
+     ~]   = gradientDescent(Data.X, abs(Result.GD_Fit.ErrorMean).^2, Config);
     
     % Build vector with features as unknowns
     Xvar    =   sym('x', [1 nVars]);
-    Xvar    =   (Xvar - Result.GD_Fit.MuStd) ./ Result.GD_Fit.SigmaStd;
+    Xvar    =   (Xvar - Result.GD_Fit.MuVar) ./ Result.GD_Fit.SigmaVar;
     Xvar    =   mapFeatures(Xvar, Config.Regression.GradDes.Deg);
     % Add bias term to X
     Xvar    =   [1, Xvar];
     % Generate function with the obtained parameters
-    Result.GD_Fit.Fstd  =   Xvar * Result.GD_Fit.ThetaStd;
+    Result.GD_Fit.Fvar  =   Xvar * Result.GD_Fit.ThetaVar;
                                 
-    evalFStd   =   Xmap * Result.GD_Fit.ThetaStd;
-    Result.GD_Fit.StdRMSE   =   1/nExamp * ((evalFStd - abs(Result.GD_Fit.ErrorMean))' ...
-        * (evalFStd - abs(Result.GD_Fit.ErrorMean)));
-    
+
     %% Evaluate result on test data
     nTest       =   size(Data.X_Test, 1);
     % Normalize test data

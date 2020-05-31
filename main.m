@@ -24,4 +24,4 @@ Result      =   regression(Data, Config);
 
 %% GETTING OUTPUT AND PLOTS
 getOutput(Data, Config, Result);
-save('res_gd_pre.mat', 'Config', 'Data', 'Result')
+save(Config.Data.SaveFile, 'Config', 'Data', 'Result')

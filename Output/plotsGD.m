@@ -4,19 +4,18 @@ function plotsGD(Data, Config, Result)
     disp('========== Fitting results: ==========');
     disp(' >> Mean:');
     disp(Result.GD_Fit.ThetaMean);
-    disp(' >> STD:');
-    disp(Result.GD_Fit.ThetaStd);
+    disp(' >> Var:');
+    disp(Result.GD_Fit.ThetaVar);
     fprintf(' >> Mean RMSE: %0.4f\n', Result.GD_Fit.MeanRMSE);
-    fprintf(' >> STD RMSE: %0.4f\n', Result.GD_Fit.StdRMSE);
     fprintf('---- Prediction RMSE: %0.4f ----\n', Result.GD_Fit.PredRMSE);
     
     figure;
-    plot(Result.GD_Fit.CostFunStd);
+    plot(Result.GD_Fit.CostFunVar);
     xlabel('Iteration'); ylabel('Cost function J(\theta)');
     title('Mean estimation');
     
     figure;
-    plot(Result.GD_Fit.CostFunStd);
+    plot(Result.GD_Fit.CostFunVar);
     xlabel('Iteration'); ylabel('Cost function J(\theta)');
     title('Standard deviation estimation');
     
@@ -40,17 +39,19 @@ function plotsGD(Data, Config, Result)
         xlabel(strcat(Config.Data.X{1})); 
         ylabel(strcat(Config.Data.X{2}));
         h = colorbar;
+        caxis([-5 45]);
         h.Label.Interpreter = 'latex';
         h.Label.FontSize = 14;
         set(get(h,'label'),'string', '$\hat{\mu} (m)$');
 
         figure;
-        fcontour(Result.GD_Fit.Fstd, 'Fill', 'on');
+        fcontour(real(sqrt(Result.GD_Fit.Fvar)), 'Fill', 'on');
         xlim([min(Data.X(:, 1)) max(Data.X(:, 1))]);
         ylim([min(Data.X(:, 2)) max(Data.X(:, 2))]);
         xlabel(strcat(Config.Data.X{1})); 
         ylabel(strcat(Config.Data.X{2}));
         h = colorbar;
+        caxis([0 40]);
         h.Label.Interpreter = 'latex';
         h.Label.FontSize = 14;
         set(get(h,'label'),'string', '$\hat{\sigma} (m)$');

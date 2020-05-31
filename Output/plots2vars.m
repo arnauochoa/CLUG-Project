@@ -1,6 +1,8 @@
 function plots2vars(Data, Config, Result)
     
     N           =   length(Data.Y);
+    [x1,x2]     =   meshgrid(min(Data.X(:,1)):max(Data.X(:,1)), ...
+                min(Data.X(:,2)):max(Data.X(:,2)));
     
     %% MEAN FITTING
     edgesX1     =   floor(min(Data.X(:,1))):1:ceil(max(Data.X(:,1)));
@@ -43,10 +45,11 @@ function plots2vars(Data, Config, Result)
     grid off;
     xlabel(Config.Data.X{1}); ylabel(Config.Data.X{2});
     h = colorbar;
+    caxis([-5 45]);
     h.Label.Interpreter = 'latex';
     h.Label.FontSize = 14;
-    set(get(h,'label'),'string', '$\hat{\mu} (m)$');
-    title('Fitting of the mean');
+    set(get(h,'label'),'string', '$\hat{\mu}_{LS} (m)$');
+%     title('Fitting of the mean');
     
     figure;
     ph = plot(Result.CoeffMeanW, 'Style', 'Contour');
@@ -54,32 +57,35 @@ function plots2vars(Data, Config, Result)
     grid off;
     xlabel(Config.Data.X{1}); ylabel(Config.Data.X{2});
     m = colorbar;
+    caxis([-5 45]);
     m.Label.Interpreter = 'latex';
     m.Label.FontSize = 14;
-    set(get(m,'label'),'string', '$\hat{\mu} (m)$');
-    title('Fitting of the mean (Weighted)');
+    set(get(m,'label'),'string', '$\hat{\mu}_{WLS} (m)$');
+%     title('Fitting of the mean (Weighted)');
     
     figure;
-    ph = plot(Result.CoeffStd, 'Style', 'Contour');
-    set(ph, 'Fill', 'on', 'LineColor', 'auto');
+    [~,ph] = contourf(x1, x2, sqrt(abs(Result.CoeffVar(x1, x2))));
+    set(ph,'LineColor','none')
     grid off;
     xlabel(Config.Data.X{1}); ylabel(Config.Data.X{2}); 
     k = colorbar;
+    caxis([0 40]);
     k.Label.Interpreter = 'latex';
     k.Label.FontSize = 14;
-    set(get(k,'label'),'string', '$\hat{\sigma} (m)$');
-    title('Fitting of the \sigma');
+    set(get(k,'label'),'string', '$\hat{\sigma}_{LS} (m)$');
+%     title('Fitting of the \sigma');
     
     figure;
-    ph = plot(Result.CoeffStdW, 'Style', 'Contour');
-    set(ph, 'Fill', 'on', 'LineColor', 'auto');
+    [~,ph] = contourf(x1, x2, sqrt(abs(Result.CoeffVarW(x1, x2))));
+    set(ph,'LineColor','none')
     grid off;
-    xlabel(Config.Data.X{1}); ylabel(Config.Data.X{2});
-    j = colorbar;
-    j.Label.Interpreter = 'latex';
-    j.Label.FontSize = 14;
-    set(get(j,'label'),'string', '$\hat{\sigma} (m)$');
-    title('Fitting of the \sigma (Weighted)');
+    xlabel(Config.Data.X{1}); ylabel(Config.Data.X{2}); 
+    k = colorbar;
+    caxis([0 40]);
+    k.Label.Interpreter = 'latex';
+    k.Label.FontSize = 14;
+    set(get(k,'label'),'string', '$\hat{\sigma}_{WLS} (m)$');
+%     title('Fitting of the \sigma');
     
     %% CDF
     mu      =   mean(Result.PredError); 
@@ -89,8 +95,9 @@ function plots2vars(Data, Config, Result)
     probplot(Result.PredError, 'noref');
     probplot(gca, pd);
     grid on;
-    xlabel('Test prediction error'); ylabel('Probability');
-    title(sprintf('Normal Probability Plot for LS. \\mu = %0.2f, \\sigma = %0.2f', mu, sigma));
+    xlabel('Test prediction error (LS)'); ylabel('Probability');
+    title('');
+%     title(sprintf('Normal Probability Plot for LS. \\mu = %0.2f, \\sigma = %0.2f', mu, sigma));
     
     mu      =   mean(Result.PredErrorW); 
     sigma   =   std(Result.PredErrorW);
@@ -99,6 +106,7 @@ function plots2vars(Data, Config, Result)
     probplot(Result.PredErrorW, 'noref');
     probplot(gca, pd);
     grid on;
-    xlabel('Test prediction error'); ylabel('Probability');
-    title(sprintf('Normal Probability Plot for WLS. \\mu = %0.2f, \\sigma = %0.2f', mu, sigma));
+    xlabel('Test prediction error (WLS)'); ylabel('Probability');
+    title('');
+%     title(sprintf('Normal Probability Plot for WLS. \\mu = %0.2f, \\sigma = %0.2f', mu, sigma));
 end
