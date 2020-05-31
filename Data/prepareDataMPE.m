@@ -1,4 +1,4 @@
-function prepareDataMPN()
+function prepareDataMPE()
 % ----------------------------------------------------------------------------------------
 % This function reads Multipath error and other input features data from an extenal
 % directory, removes outliers and invalid data and separates data. 
@@ -7,7 +7,8 @@ function prepareDataMPN()
 %           preparedData_MPN:     Struct. Prepared data
 %
 % ----------------------------------------------------------------------------------------
-    set(0, 'DefaultLineLineWidth', 2);
+    saveDirectory   =    'Data/preparedData_MPE';
+    
     %% Load file
     directory = 'Data/feat_saved.mat';
     load(directory, 'feat', 'colnames');
@@ -52,5 +53,5 @@ function prepareDataMPN()
     Data.X_Test =   DataTmp.X(indices(fix(0.6*nExamp)+fix(0.2*nExamp)+1:end), :);
     Data.Y_Test =   DataTmp.Y(indices(fix(0.6*nExamp)+fix(0.2*nExamp)+1:end));
     
-    save('Data/preparedData_MPN', 'Data');
+    save(saveDirectory, 'Data');
 end

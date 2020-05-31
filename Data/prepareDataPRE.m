@@ -1,4 +1,4 @@
-function prepareData()
+function prepareDataPRE()
 % ----------------------------------------------------------------------------------------
 % This function reads Pseudorange error, CN0 and elevation data from an extenal
 % directory, removes outliers and invalid data and separates data. 
@@ -7,8 +7,10 @@ function prepareData()
 %           preparedData_thres:     Struct. Prepared data
 %
 % ----------------------------------------------------------------------------------------
-
-    directory = '../PR_data/';
+    saveDirectory   =   'Data/preparedData_thres1';
+    
+    %% Load file
+    directory = 'Data/PR_data/';
     AllFiles = dir([directory '*.mat']);
     for f = 1:length(AllFiles)
         load([directory AllFiles(f).name]);
@@ -61,5 +63,5 @@ function prepareData()
     Data.X_Test =   DataTmp.X(indices(fix(0.6*nExamp)+fix(0.2*nExamp)+1:end), :);
     Data.Y_Test =   DataTmp.Y(indices(fix(0.6*nExamp)+fix(0.2*nExamp)+1:end));
     
-    save('Data/preparedData_thres', 'Data');
+    save(saveDirectory, 'Data');
 end

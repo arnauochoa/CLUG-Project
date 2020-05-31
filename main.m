@@ -13,10 +13,10 @@ Config      =   getConfig();
 %% GETTING DATA
 Data        =   readData(Config);
 
-% TODO: remove this, reduced data for test purposes >>>>>>>
-nData   = 47317;          % Current max: 47317
-Data.X  = Data.X(1:nData, :);
-Data.Y  = Data.Y(1:nData);
+% Reduce data for test purposes >>>>>>>>>>>>>>>>>>>
+% nData   = 100;
+% Data.X  = Data.X(1:nData, :);
+% Data.Y  = Data.Y(1:nData);
 % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 %% OBTAINIG REGRESSION
