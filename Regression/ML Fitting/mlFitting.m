@@ -95,4 +95,5 @@ predictions     =   nnPredict(  Result.Theta1,  ...
                                 Config.Regression.ML.ActivationFun);
 Result.MLFit.PredError =   Data.Y_Test - predictions;
 Result.MLFit.PredRMSE =   sqrt(mean((Data.Y_Test - predictions).^2));
+
 end

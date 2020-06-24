@@ -14,13 +14,13 @@ Config      =   getConfig();
 Data        =   readData(Config);
 
 % Reduce data for test purposes >>>>>>>>>>>>>>>>>>>
-% nData   = 100;
+% nData   = 15000;
 % Data.X  = Data.X(1:nData, :);
 % Data.Y  = Data.Y(1:nData);
 % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 %% OBTAINIG REGRESSION
-Result      =   regression(Data, Config);
+Result      =   regressionMethod(Data, Config);
 
 %% GETTING OUTPUT AND PLOTS
 getOutput(Data, Config, Result);
