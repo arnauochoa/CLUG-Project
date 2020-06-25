@@ -3,6 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%% FOR MULTIPLE VARIABLES %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 close all; clc;
+clear all:
 addpath(genpath('./'));
 %% Configuration
 % CHOOSE DATA FILE HERE 'Data/preparedData_thres.mat'
@@ -11,16 +12,16 @@ Config.Data.Type    =   2; % DO NOT CHANGE
 % DATA (MPN data)
 [col, colnames] = col_feat();
 % Feature to keep from Data.X structure
-Config.Data.ColIndices  =   [   col.maxtopor,          ...     % Feature 1
-                                col.maxtopol];          % Feature 2
+Config.Data.ColIndices  =   [   col.maxtopol,          ...     % Feature 1
+                                col.daz];          % Feature 2
 
 %% PLOTS 2D
 
 % Names of features for plots
-Config.Data.X{1}            =   'MTHR';
+Config.Data.X{1}            =   'MTHL';
 Config.Data.X_units{1}      =   ' (m)';
-Config.Data.X{2}            =   'MTHL';
-Config.Data.X_units{2}      =   ' (m)';
+Config.Data.X{2}            =   'Relative azimuth';
+Config.Data.X_units{2}      =   ' (deg)';
 Config.Data.Y               =   'MP error';
 Config.Data.Y_units         =   ' (m)';
 
@@ -265,7 +266,8 @@ title('2D view - Distribution of points with WORST MPE');
 
 figure;
 contourf(X, Y, Z, 20);
-xlabel(Config.Data.X{1}); ylabel(Config.Data.X{2});
+xlabel([Config.Data.X{1}, Config.Data.X_units{1}]); 
+ylabel([Config.Data.X{2}, Config.Data.X_units{2}]);
 u = colorbar;
 colormap jet;
 set(get(u,'label'),'string','Number of points (%)');
