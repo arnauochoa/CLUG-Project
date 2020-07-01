@@ -41,9 +41,10 @@ net = fitnet(hlSize,'trainscg');
 
 % Train neural network
 %net.trainFcn = 'trainscg';
-holdout = 0.05;
-c = cvpartition(m,'HoldOut',holdout); % Choose 5% of training examples
-tinds = training(c); % Selects random Training indices
+%holdout = 0.05;
+%c = cvpartition(nExamp,'HoldOut',holdout); % Choose 5% of training examples
+%tinds = training(c); % Selects random Training indices
 
-
+X = X_train_norm(1:1000,:)';
+y = Data.Y(1:1000)';
 [net,tr] = train(net,X,y);

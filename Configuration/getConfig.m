@@ -10,7 +10,7 @@ function [Config] = getConfig()
     
     %% FILE DIRECTORIES
     % Input file
-    Config.Data.FileName        =   'Data/preparedData_MPE.mat';
+    Config.Data.FileName        =   'Data/preparedData_MPE_41119.mat';
     % Output file
     Config.Data.SaveFile        =   'test.mat';
     
@@ -22,9 +22,12 @@ function [Config] = getConfig()
 %     Config.Data.ColIndices      =   [1, 2]; % For PRE data
     Config.Data.ColIndices  =   [   col.s,          ...     % SNR
                                     col.el,         ...     % Elevation
+                                    col.az,         ...     % Azimuth
                                     col.daz,        ...     % Relative azimuth
+                                    col.maxtopo,    ...     % Max topo (global)
                                     col.maxtopor,   ...     % Maximum topo right
-                                    col.maxtopol];          % Maximum topo left  
+                                    col.maxtopol    ...     % Maximum topo left  
+                                    col.visibility];        % Visibility (LOS or NLOS wrt vehicle)
     % Names of features for plots
     Config.Data.X           =   colnames(Config.Data.ColIndices);
     Config.Data.Y           =   'MP Error';
@@ -40,7 +43,7 @@ function [Config] = getConfig()
     % 1 - MATLAB fitting (only 2 features)
     % 2 - Gradient descent
     % 3 - Neural Network
-    Config.Regression.Method                        =   3;
+    Config.Regression.Method                        =   2;
     
     %% MATLAB FITTING
     Config.Regression.Matlab_CF.Mean.Model          =   'poly22';    % poly2, exp1, poly22

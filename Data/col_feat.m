@@ -77,5 +77,9 @@ n            = n + 1;
 col.maxtopol = n;                       % max mask left
 colnames{n}  = 'maxtopol';
 
+n            = n + 1;
+col.visibility = n;                       % visibility
+colnames{n}  = 'visibility';
+
 col.max      = n;
 

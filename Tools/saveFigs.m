@@ -1,4 +1,4 @@
-FolderName = 'D:\Documentos\MASTER ASNAT19\ML project - CLUG\Figures\Data Analysis\mpe_mthr_mthl';   % Your destination folder
+FolderName = 'D:\Documentos\MASTER ASNAT19\ML project - CLUG\Figures\Data Analysis\dataset_41119\mpe_elev_daz\right_0_180\grid_1.0_1.0';   % Your destination folder
 if ~exist(FolderName, 'dir')
        mkdir(FolderName)
 end
