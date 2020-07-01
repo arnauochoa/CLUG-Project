@@ -66,6 +66,7 @@ parfor i = 1:length(sizes)
     % Error in cross-validation examples
     predictions     =   nnPredict(Theta1, Theta2, XVal, Config.Regression.ML.ActivationFun);
     MSEVal(i)       =   mean((predictions - yVal).^2);
+
 end
 figure;
 plot(sizes, MSETrain); hold on;

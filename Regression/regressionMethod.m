@@ -1,4 +1,4 @@
-function [Result] = regression(Data, Config)
+function [Result] = regressionMethod(Data, Config)
 % ----------------------------------------------------------------------------------------
 % This function applies the regression technique selected in configuration
 %
